@@ -1,3 +1,3 @@
 # Problem 1
 
-This is my not first commit :)
+This is not my first commit :)
