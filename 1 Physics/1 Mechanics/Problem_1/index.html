@@ -164,9 +164,15 @@
 <ul>
 <li><strong>Horizontal Motion:</strong></li>
 <li>The horizontal component of velocity remains constant since there is no horizontal acceleration.</li>
-<li>The displacement in the horizontal direction is given by:
-  <code>d²x/dt² = 0 → dx/dt = v₀ₓ = v₀ * cos(θ)
-  x(t) = v₀ * cos(θ) * t</code></li>
+<li>The displacement in the horizontal direction is given by:</li>
+</ul>
+<p>$$
+  \frac{d^2x}{dt^2} = 0 \Rightarrow \frac{dx}{dt} = v_{0x} = v_0 \cos(\theta)
+  $$
+  $$
+  x(t) = v_0 \cos(\theta) \cdot t
+  $$</p>
+<ul>
 <li>
 <p>This equation shows that the horizontal motion is uniform and independent of gravity.</p>
 </li>
@@ -174,36 +180,49 @@
 <p><strong>Vertical Motion:</strong></p>
 </li>
 <li>The vertical component of velocity changes due to gravitational acceleration.</li>
-<li>The displacement in the vertical direction is given by:
-  <code>d²y/dt² = -g → dy/dt = v₀ᵧ - gt = v₀ * sin(θ) - gt
-  y(t) = v₀ * sin(θ) * t - (1/2) * g * t²</code></li>
+<li>The displacement in the vertical direction is given by:</li>
+</ul>
+<p>$$
+  \frac{d^2y}{dt^2} = -g \Rightarrow \frac{dy}{dt} = v_{0y} - gt = v_0 \sin(\theta) - gt
+  $$
+  $$
+  y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2
+  $$</p>
+<ul>
 <li>The vertical component influences the total time of flight and peak height of the projectile.</li>
 </ul>
 <h3 id="time-of-flight">Time of Flight</h3>
-<p>The projectile reaches the ground when <code>y(t) = 0</code>. Solving for time:</p>
-<pre><code> v₀ * sin(θ) * t - (1/2) * g * t² = 0 
- t (v₀ * sin(θ) - (1/2) * g * t) = 0
-</code></pre>
-<pre><code> t = 0 or t = (2 * v₀ * sin(θ)) / g 
-</code></pre>
+<p>The projectile reaches the ground when $$ y(t) = 0 $$ . Solving for time:</p>
+<div class="arithmatex">\[
+ v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 = 0
+$$
+$$
+ t (v_0 \sin(\theta) - \frac{1}{2} g t) = 0
+$$
+$$
+ t = 0 \quad \text{or} \quad t = \frac{2 v_0 \sin(\theta)}{g}
+\]</div>
 <ul>
-<li>The first solution <code>t = 0</code> represents the initial launch time.</li>
+<li>The first solution $$ t = 0 $$ represents the initial launch time.</li>
 <li>The second solution gives the total flight duration.</li>
 </ul>
 <h3 id="range">Range</h3>
 <p>Substituting the time of flight into the horizontal motion equation:</p>
-<pre><code> R = v₀ * cos(θ) * (2 * v₀ * sin(θ)) / g = (v₀² * sin(2θ)) / g 
-</code></pre>
+<div class="arithmatex">\[
+ R = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+\]</div>
 <ul>
 <li>This equation shows that the range depends on the initial velocity and the launch angle.</li>
-<li>The function <code>sin(2θ)</code> explains why the range is symmetric around <code>45°</code>.</li>
+<li>The function $$ \sin(2\theta) $$ explains why the range is symmetric around $$ 45^\circ $$ .</li>
 </ul>
 <h3 id="dependence-on-parameters">Dependence on Parameters</h3>
-<p>The range <code>R</code> is affected by multiple factors:
-- The range is maximized when <code>sin(2θ)</code> is maximized, which occurs at <code>θ = 45°</code>:
-  <code>R_max = (v₀²) / g</code>
-- The range increases quadratically with initial velocity <code>v₀</code>.
-- The range decreases as gravitational acceleration <code>g</code> increases, meaning projectiles will travel farther on celestial bodies with lower gravity.</p>
+<p>The range $$ R $$ is affected by multiple factors:
+- The range is maximized when $$ \sin(2\theta) $$ is maximized, which occurs at $$ \theta = 45^\circ $$ :</p>
+<p>$$
+  R_{\max} = \frac{v_0^2}{g}
+  $$
+- The range increases quadratically with initial velocity $$ v_0 $$ .
+- The range decreases as gravitational acceleration $$ g $$ increases, meaning projectiles will travel farther on celestial bodies with lower gravity.</p>
 <h2 id="2-practical-applications">2. Practical Applications</h2>
 <h3 id="real-world-scenarios">Real-World Scenarios</h3>
 <p>Projectile motion applies to various real-world cases, including:
@@ -217,7 +236,7 @@
   - The motion of celestial bodies and meteor impacts follow similar equations.</p>
 <h3 id="adaptations">Adaptations</h3>
 <ul>
-<li><strong>Uneven Terrain:</strong> Adjust the initial height <code>y₀</code> to reflect varying ground levels.</li>
+<li><strong>Uneven Terrain:</strong> Adjust the initial height $$ y_0 $$ to reflect varying ground levels.</li>
 <li><strong>Air Resistance:</strong> Consider drag force, which modifies trajectory curves and reduces range.</li>
 <li><strong>Wind Effects:</strong> Incorporate horizontal forces, affecting projectiles over long distances.</li>
 </ul>
@@ -253,7 +272,7 @@ plt.show()
 <h3 id="graphical-interpretation">Graphical Interpretation</h3>
 <ul>
 <li>The plot illustrates how range changes with the angle of projection.</li>
-<li>The maximum range is achieved at <code>45°</code>, as shown by the red dashed line.</li>
+<li>The maximum range is achieved at $$ 45^\circ $$ , as shown by the red dashed line.</li>
 <li>Different initial velocities shift the entire curve upward while maintaining symmetry.</li>
 </ul>
 <h2 id="4-limitations-and-extensions">4. Limitations and Extensions</h2>
