@@ -8,49 +8,64 @@ Projectile motion can be analyzed by breaking it into horizontal and vertical co
 - **Horizontal Motion:**
   - The horizontal component of velocity remains constant since there is no horizontal acceleration.
   - The displacement in the horizontal direction is given by:
-  ```
-  d²x/dt² = 0 → dx/dt = v₀ₓ = v₀ * cos(θ)
-  x(t) = v₀ * cos(θ) * t
-  ```
+  
+  $$
+  \frac{d^2x}{dt^2} = 0 \Rightarrow \frac{dx}{dt} = v_{0x} = v_0 \cos(\theta)
+  $$
+  $$
+  x(t) = v_0 \cos(\theta) \cdot t
+  $$
+  
   - This equation shows that the horizontal motion is uniform and independent of gravity.
 
 - **Vertical Motion:**
   - The vertical component of velocity changes due to gravitational acceleration.
   - The displacement in the vertical direction is given by:
-  ```
-  d²y/dt² = -g → dy/dt = v₀ᵧ - gt = v₀ * sin(θ) - gt
-  y(t) = v₀ * sin(θ) * t - (1/2) * g * t²
-  ```
+  
+  $$
+  \frac{d^2y}{dt^2} = -g \Rightarrow \frac{dy}{dt} = v_{0y} - gt = v_0 \sin(\theta) - gt
+  $$
+  $$
+  y(t) = v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2
+  $$
+  
   - The vertical component influences the total time of flight and peak height of the projectile.
 
 ### Time of Flight
-The projectile reaches the ground when `y(t) = 0`. Solving for time:
-``` 
- v₀ * sin(θ) * t - (1/2) * g * t² = 0 
- t (v₀ * sin(θ) - (1/2) * g * t) = 0
-```
-``` 
- t = 0 or t = (2 * v₀ * sin(θ)) / g 
-```
-- The first solution `t = 0` represents the initial launch time.
+The projectile reaches the ground when $$ y(t) = 0 $$ . Solving for time:
+
+$$
+ v_0 \sin(\theta) \cdot t - \frac{1}{2} g t^2 = 0
+$$
+$$
+ t (v_0 \sin(\theta) - \frac{1}{2} g t) = 0
+$$
+$$
+ t = 0 \quad \text{or} \quad t = \frac{2 v_0 \sin(\theta)}{g}
+$$
+
+- The first solution $$ t = 0 $$ represents the initial launch time.
 - The second solution gives the total flight duration.
 
 ### Range
 Substituting the time of flight into the horizontal motion equation:
-``` 
- R = v₀ * cos(θ) * (2 * v₀ * sin(θ)) / g = (v₀² * sin(2θ)) / g 
-```
+
+$$
+ R = v_0 \cos(\theta) \cdot \frac{2 v_0 \sin(\theta)}{g} = \frac{v_0^2 \sin(2\theta)}{g}
+$$
+
 - This equation shows that the range depends on the initial velocity and the launch angle.
-- The function `sin(2θ)` explains why the range is symmetric around `45°`.
+- The function $$ \sin(2\theta) $$ explains why the range is symmetric around $$ 45^\circ $$ .
 
 ### Dependence on Parameters
-The range `R` is affected by multiple factors:
-- The range is maximized when `sin(2θ)` is maximized, which occurs at `θ = 45°`:
-  ``` 
-  R_max = (v₀²) / g 
-  ```
-- The range increases quadratically with initial velocity `v₀`.
-- The range decreases as gravitational acceleration `g` increases, meaning projectiles will travel farther on celestial bodies with lower gravity.
+The range $$ R $$ is affected by multiple factors:
+- The range is maximized when $$ \sin(2\theta) $$ is maximized, which occurs at $$ \theta = 45^\circ $$ :
+  
+  $$
+  R_{\max} = \frac{v_0^2}{g}
+  $$
+- The range increases quadratically with initial velocity $$ v_0 $$ .
+- The range decreases as gravitational acceleration $$ g $$ increases, meaning projectiles will travel farther on celestial bodies with lower gravity.
 
 ## 2. Practical Applications
 ### Real-World Scenarios
@@ -65,7 +80,7 @@ Projectile motion applies to various real-world cases, including:
   - The motion of celestial bodies and meteor impacts follow similar equations.
 
 ### Adaptations
-- **Uneven Terrain:** Adjust the initial height `y₀` to reflect varying ground levels.
+- **Uneven Terrain:** Adjust the initial height $$ y_0 $$ to reflect varying ground levels.
 - **Air Resistance:** Consider drag force, which modifies trajectory curves and reduces range.
 - **Wind Effects:** Incorporate horizontal forces, affecting projectiles over long distances.
 
@@ -103,7 +118,7 @@ plt.show()
 
 ### Graphical Interpretation
 - The plot illustrates how range changes with the angle of projection.
-- The maximum range is achieved at `45°`, as shown by the red dashed line.
+- The maximum range is achieved at $$ 45^\circ $$ , as shown by the red dashed line.
 - Different initial velocities shift the entire curve upward while maintaining symmetry.
 
 ## 4. Limitations and Extensions
@@ -124,4 +139,3 @@ plt.show()
 
 ## Conclusion
 This investigation provides a comprehensive understanding of how projectile range depends on the angle of projection and other initial conditions. By developing a computational tool, we can visualize these relationships and explore more complex scenarios, enhancing both theoretical knowledge and practical applications. Future extensions could include incorporating real-world effects such as wind and air resistance to refine predictions.
-
