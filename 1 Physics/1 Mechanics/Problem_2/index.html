@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Investigating the Dynamics of a Forced Damped Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Investigating the Dynamics of a Forced Damped Pendulum";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,8 +48,48 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Investigating the Range as a Function of the Angle of Projection</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Investigating the Dynamics of a Forced Damped Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#governing-equation">Governing Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#small-angle-approximation">Small-Angle Approximation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-analysis-of-dynamics">2. Analysis of Dynamics</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#effect-of-system-parameters">Effect of System Parameters</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#transition-to-chaos">Transition to Chaos</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-practical-applications">3. Practical Applications</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#real-world-examples">Real-World Examples</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-implementation">4. Implementation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#python-simulation">Python Simulation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#graphical-interpretation">Graphical Interpretation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-limitations-and-future-work">5. Limitations and Future Work</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#limitations">Limitations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#future-directions">Future Directions</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +151,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Investigating the Dynamics of a Forced Damped Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +159,125 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="investigating-the-dynamics-of-a-forced-damped-pendulum">Investigating the Dynamics of a Forced Damped Pendulum</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<h3 id="governing-equation">Governing Equation</h3>
+<p>The motion of a forced damped pendulum is described by the following nonlinear differential equation:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin(\theta) = A \cos(\omega t)
+\]</div>
+<p>where:
+- <span class="arithmatex">\( \theta \)</span> is the angular displacement,
+- <span class="arithmatex">\( b \)</span> is the damping coefficient,
+- <span class="arithmatex">\( g/L \)</span> is the natural frequency squared,
+- <span class="arithmatex">\( A \)</span> is the amplitude of the external periodic force,
+- <span class="arithmatex">\( \omega \)</span> is the driving frequency,
+- <span class="arithmatex">\( t \)</span> is time.</p>
+<h3 id="small-angle-approximation">Small-Angle Approximation</h3>
+<p>For small angles (<span class="arithmatex">\( \theta \approx 0 \)</span>), we can approximate <span class="arithmatex">\( \sin(\theta) \approx \theta \)</span>, simplifying the equation to:</p>
+<div class="arithmatex">\[
+\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \theta = A \cos(\omega t)
+\]</div>
+<p>This leads to a driven damped harmonic oscillator equation, whose solutions exhibit resonance when <span class="arithmatex">\( \omega \approx \sqrt{g/L} \)</span> (natural frequency of a simple pendulum).</p>
+<h2 id="2-analysis-of-dynamics">2. Analysis of Dynamics</h2>
+<h3 id="effect-of-system-parameters">Effect of System Parameters</h3>
+<ul>
+<li><strong>Damping Coefficient (b):</strong> Higher damping suppresses oscillations and prevents chaos.</li>
+<li><strong>Driving Amplitude (A):</strong> Stronger forcing can induce chaotic motion.</li>
+<li><strong>Driving Frequency (<span class="arithmatex">\( \omega \)</span>):</strong> Resonance occurs when <span class="arithmatex">\( \omega \)</span> matches the system’s natural frequency.</li>
+</ul>
+<h3 id="transition-to-chaos">Transition to Chaos</h3>
+<p>At certain parameter values, the motion becomes chaotic, meaning small changes in initial conditions lead to drastically different trajectories. This is studied via phase portraits, Poincaré sections, and bifurcation diagrams.</p>
+<h2 id="3-practical-applications">3. Practical Applications</h2>
+<h3 id="real-world-examples">Real-World Examples</h3>
+<ul>
+<li><strong>Energy Harvesting:</strong> Used in piezoelectric devices to extract energy from mechanical oscillations.</li>
+<li><strong>Suspension Bridges:</strong> Forced oscillations influence bridge stability.</li>
+<li><strong>Oscillating Circuits:</strong> Analogous behavior is found in RLC circuits under AC forcing.</li>
+</ul>
+<h2 id="4-implementation">4. Implementation</h2>
+<h3 id="python-simulation">Python Simulation</h3>
+<p>The following Python script simulates the forced damped pendulum and includes Poincaré sections and bifurcation analysis:</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Define the differential equation for the forced damped pendulum
+def forced_damped_pendulum(t, y, b, A, omega):
+    theta, omega_dot = y  # Unpack state variables
+    dtheta_dt = omega_dot
+    domega_dt = -b * omega_dot - np.sin(theta) + A * np.cos(omega * t)
+    return [dtheta_dt, domega_dt]
+
+# Parameters
+b = 0.5      # Damping coefficient
+A = 1.2      # Driving force amplitude
+omega = 2.0  # Driving force frequency
+initial_conditions = [0.1, 0]  # Initial angle and angular velocity
+
+time_span = (0, 100)  # Time span for integration
+time_eval = np.linspace(time_span[0], time_span[1], 5000)  # Time points
+
+# Solve the ODE
+solution = solve_ivp(forced_damped_pendulum, time_span, initial_conditions, t_eval=time_eval, args=(b, A, omega))
+
+# Plot results
+plt.figure(figsize=(10, 6))
+plt.plot(solution.t, solution.y[0], label='Theta (Angle)')
+plt.xlabel('Time (s)')
+plt.ylabel('Angle (radians)')
+plt.title('Forced Damped Pendulum Motion')
+plt.legend()
+plt.grid()
+plt.show()
+
+# Phase Space Plot
+plt.figure(figsize=(10, 6))
+plt.plot(solution.y[0], solution.y[1], label='Phase Portrait')
+plt.xlabel('Angle (radians)')
+plt.ylabel('Angular Velocity (rad/s)')
+plt.title('Phase Space of Forced Damped Pendulum')
+plt.legend()
+plt.grid()
+plt.show()
+
+# Poincaré Section
+poincare_times = np.arange(0, time_span[1], np.pi / omega)
+theta_poincare = []
+omega_poincare = []
+for t in poincare_times:
+    idx = np.abs(solution.t - t).argmin()
+    theta_poincare.append(solution.y[0][idx])
+    omega_poincare.append(solution.y[1][idx])
+
+plt.figure(figsize=(10, 6))
+plt.scatter(theta_poincare, omega_poincare, s=10, color='red')
+plt.xlabel('Angle (radians)')
+plt.ylabel('Angular Velocity (rad/s)')
+plt.title('Poincaré Section of Forced Damped Pendulum')
+plt.grid()
+plt.show()
+</code></pre>
+<h3 id="graphical-interpretation">Graphical Interpretation</h3>
+<ul>
+<li><strong>Time Evolution:</strong> Shows oscillatory or chaotic behavior.</li>
+<li><strong>Phase Portrait:</strong> Helps visualize stability and transitions to chaos.</li>
+<li><strong>Poincaré Section:</strong> Provides insight into periodicity and chaos.</li>
+</ul>
+<h2 id="5-limitations-and-future-work">5. Limitations and Future Work</h2>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li><strong>Neglects higher-order damping terms</strong> like air resistance.</li>
+<li><strong>Fixed periodic forcing;</strong> does not explore non-periodic effects.</li>
+</ul>
+<h3 id="future-directions">Future Directions</h3>
+<ul>
+<li><strong>Bifurcation Analysis:</strong> Vary parameters to observe critical transitions.</li>
+<li><strong>Poincaré Sections:</strong> Identify regions of chaotic motion.</li>
+<li><strong>Experimental Validation:</strong> Compare numerical results with real-world measurements.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This study explores the intricate behavior of a forced damped pendulum, from resonance to chaos. Using computational models, we gain insight into oscillatory systems with broad applications in physics and engineering. Further research can extend this model to analyze real-world oscillations with nonlinear effects.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
