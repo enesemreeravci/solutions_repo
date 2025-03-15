@@ -6,7 +6,7 @@
 Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, acting downward. This assumption simplifies the equations, making it easier to analyze motion using basic kinematic principles.
 
 - **Horizontal Motion:**
-  - The horizontal component of velocity remains constant since there is no horizontal acceleration.
+  -The horizontal component of velocity remains constant since there is no horizontal acceleration.
   - The displacement in the horizontal direction is given by:
   
   $$
