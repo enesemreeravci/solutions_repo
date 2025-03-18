@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 3 - Physics and Mathematics</title>
+<title>Trajectories of a Freely Released Payload Near Earth - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 3";
+        var mkdocs_page_name = "Trajectories of a Freely Released Payload Near Earth";
         var mkdocs_page_input_path = "1 Physics/2 Gravity/Problem_3.md";
         var mkdocs_page_url = null;
       </script>
@@ -54,12 +54,30 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">2 Gravity</a>
 <ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Orbital Period and Orbital Radius</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
+<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Escape Velocities and Cosmic Velocities</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 3</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Trajectories of a Freely Released Payload Near Earth</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#types-of-possible-trajectories">Types of Possible Trajectories</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#governing-equations">Governing Equations</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-numerical-analysis">2. Numerical Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#computational-simulation">Computational Simulation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-real-world-applications">3. Real-World Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-conclusion">4. Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +129,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">2 Gravity</li>
-<li class="breadcrumb-item active">Problem 3</li>
+<li class="breadcrumb-item active">Trajectories of a Freely Released Payload Near Earth</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,11 +137,96 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-3">Problem 3</h1>
+<h1 id="trajectories-of-a-freely-released-payload-near-earth">Trajectories of a Freely Released Payload Near Earth</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<h3 id="types-of-possible-trajectories">Types of Possible Trajectories</h3>
+<p>When a payload is released from a moving rocket near Earth, its trajectory is determined by initial velocity, altitude, and gravitational forces. The possible trajectories include:</p>
+<ol>
+<li><strong>Elliptical Orbit</strong>: If the payload has sufficient tangential velocity but remains bound to Earth’s gravity, it enters an elliptical orbit.</li>
+<li><strong>Parabolic Trajectory</strong>: If the payload achieves exactly the escape velocity, it follows a parabolic path, escaping Earth but not entering orbit.</li>
+<li><strong>Hyperbolic Escape</strong>: If the velocity exceeds escape velocity, the payload follows a hyperbolic trajectory and leaves Earth permanently.</li>
+<li><strong>Suborbital Path (Reentry)</strong>: If the payload has insufficient velocity, it falls back to Earth, reentering the atmosphere.</li>
+</ol>
+<h3 id="governing-equations">Governing Equations</h3>
+<h4 id="newtons-law-of-universal-gravitation">Newton's Law of Universal Gravitation</h4>
+<p>The gravitational force acting on the payload is given by:</p>
+<div class="arithmatex">\[
+F_g = \frac{G M m}{r^2}
+\]</div>
+<p>where:
+- $$ G $$ is the gravitational constant,
+- $$ M $$ is Earth's mass,
+- $$ m $$ is the payload mass,
+- $$ r $$ is the distance from Earth's center.</p>
+<h4 id="equations-of-motion">Equations of Motion</h4>
+<p>Using Newton’s Second Law:</p>
+<div class="arithmatex">\[
+F = m a
+\]</div>
+<p>The acceleration due to gravity:</p>
+<div class="arithmatex">\[
+ a = \frac{G M}{r^2}
+\]</div>
+<p>The velocity components of the payload determine its trajectory:</p>
+<ul>
+<li><strong>Radial Velocity</strong>: Determines whether the payload moves away or toward Earth.</li>
+<li><strong>Tangential Velocity</strong>: Governs the curvature of its orbit.</li>
+</ul>
+<h2 id="2-numerical-analysis">2. Numerical Analysis</h2>
+<p>To compute the payload's path, we use numerical integration methods such as <strong>Euler’s Method</strong> or <strong>Runge-Kutta Methods</strong> to solve for motion under gravity.</p>
+<h3 id="computational-simulation">Computational Simulation</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+# Constants
+G = 6.67430e-11  # Gravitational constant (m^3/kg/s^2)
+M_earth = 5.972e24  # Mass of Earth (kg)
+R_earth = 6.371e6  # Radius of Earth (m)
+
+# Initial Conditions
+altitude = 300000  # 300 km above Earth
+r0 = R_earth + altitude  # Initial distance from Earth's center (m)
+v0 = 7500  # Initial velocity (m/s), adjust for different cases
+angle = 45  # Initial velocity direction (degrees)
+vx0 = v0 * np.cos(np.radians(angle))
+vy0 = v0 * np.sin(np.radians(angle))
+
+# Equations of Motion
+def equations(t, y):
+    x, vx, y, vy = y
+    r = np.sqrt(x**2 + y**2)
+    ax = -G * M_earth * x / r**3
+    ay = -G * M_earth * y / r**3
+    return [vx, ax, vy, ay]
+
+# Solve using numerical integration
+time_span = (0, 5000)
+y0 = [r0, vx0, 0, vy0]
+solution = solve_ivp(equations, time_span, y0, t_eval=np.linspace(0, 5000, 1000))
+
+# Plot Results
+plt.figure(figsize=(8, 8))
+plt.plot(solution.y[0], solution.y[2], label='Payload Trajectory')
+plt.xlabel("X Position (m)")
+plt.ylabel("Y Position (m)")
+plt.title("Trajectory of a Freely Released Payload Near Earth")
+plt.legend()
+plt.grid()
+plt.show()
+</code></pre>
+<h2 id="3-real-world-applications">3. Real-World Applications</h2>
+<ul>
+<li><strong>Satellite Deployment</strong>: Understanding initial velocity requirements for stable orbits.</li>
+<li><strong>Spacecraft Reentry</strong>: Calculating safe descent trajectories.</li>
+<li><strong>Interplanetary Travel</strong>: Planning escape trajectories for missions beyond Earth.</li>
+</ul>
+<h2 id="4-conclusion">4. Conclusion</h2>
+<p>By analyzing payload motion under gravity, we determine whether it will orbit, escape, or reenter. Numerical simulations provide insights for space mission planning and trajectory optimization. Future enhancements could include atmospheric drag effects and complex orbital maneuvers.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../Problem_2/" title="Problem 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-left" href="../Problem_2/" title="Escape Velocities and Cosmic Velocities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
 <a class="btn btn-neutral float-right" href="../../3%20Waves/Problem_1/" title="Problem 1">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
