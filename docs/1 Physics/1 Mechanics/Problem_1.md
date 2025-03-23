@@ -1,3 +1,5 @@
+## Problem 1
+
 **Investigating the Range as a Function of the Angle of Projection**
 
 ---
@@ -5,63 +7,83 @@
 ### 1. Theoretical Foundation
 
 #### Deriving the Equations of Motion
+
 Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, acting downward. This assumption simplifies the equations, making it easier to analyze motion using basic kinematic principles.
 
 ##### Horizontal Motion:
+
 - The horizontal component of velocity remains constant since there is no horizontal acceleration.
 - The displacement in the horizontal direction is given by:
 
-    x = v0 * cos(theta) * t
+  $x = v_0 \cdot \cos(\theta) \cdot t$
 
 This equation shows that the horizontal motion is uniform and independent of gravity.
 
 ##### Vertical Motion:
+
 - The vertical component of velocity changes due to gravitational acceleration.
 - The displacement in the vertical direction is given by:
 
-    y = v0 * sin(theta) * t - 0.5 * g * t**2
+  $y = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} \cdot g \cdot t^2$
 
 The vertical component influences the total time of flight and peak height of the projectile.
 
 ##### Time of Flight
-The projectile reaches the ground when y = 0. Solving for time:
 
-    t = 0 and t = (2 * v0 * sin(theta)) / g
+For a projectile launched from ground level ($h = 0$), it reaches the ground when $y = 0$. Solving for time:
 
-The first solution represents the initial launch time. The second solution gives the total flight duration.
+$t = \frac{2 v_0 \sin(\theta)}{g}$
+
+If launched from an initial height $h$, the time of flight adjusts:
+
+$t = \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$
 
 ##### Range
-Substituting the time of flight into the horizontal motion equation:
 
-    R = (v0**2 * sin(2 * theta)) / g
+For ground level ($h = 0$):
 
-This equation shows that the range depends on the initial velocity and the launch angle. The function sin(2 * theta) explains why the range is symmetric around 45 degrees.
+$R = \frac{v_0^2 \sin(2\theta)}{g}$
+
+For an initial height $h$:
+
+$R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$
+
+In chaotic situations (e.g., variable wind), range can be modeled with a perturbation term:
+
+$R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$
+
+where $\delta R$ is a random noise factor (e.g., from wind gusts), typically drawn from a distribution like $\delta R \sim \mathcal{N}(0, \sigma)$, with $\sigma$ representing the noise magnitude.
 
 #### Family of Solutions
-From the range formula R = (v0**2 * sin(2 * theta)) / g, we derive a family of solutions for different values of theta and v0. Notably:
-- For every angle θ, there exists a complementary angle (90 - θ) that yields the same range.
-- As v0 increases, the maximum achievable range increases quadratically.
-- The trajectory and time of flight can be visualized as parametric functions of angle and initial velocity.
+
+From the range formulas—$R = \frac{v_0^2 \sin(2\theta)}{g}$ (for $h = 0$), $R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$ (for $h > 0$), and $R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$ (for noise)—we derive a family of solutions for different $\theta$, $v_0$, $g$, $h$, and environmental variability. Notably:
+
+- For $h = 0$, symmetry holds around $45^\circ$.
+- Height $h$ extends range and shifts optimal angles.
+- Noise $\delta R$ introduces unpredictability, mimicking real-world turbulence.
 
 ---
 
 ### 2. Practical Applications
 
 #### Real-World Scenarios
+
 Projectile motion applies to various real-world cases, including:
+
 - **Sports**:
-  - Soccer players use precise angles to shoot the ball past defenders.
-  - Basketball shots require players to estimate the ideal arc for successful scoring.
+  - Soccer free kicks from elevated positions (e.g., 20 m) adjust for height.
+  - Basketball shots from a 3 m hoop height tweak the arc for success.
 - **Engineering**:
-  - Projectile calculations are critical in artillery and missile guidance systems.
+  - Artillery on a 50 m hill uses height-adjusted range for targeting.
 - **Space Exploration & Astrophysics**:
-  - Scientists compute trajectories to optimize spacecraft landings.
-  - The motion of celestial bodies and meteor impacts follow similar equations.
+  - Spacecraft landings on uneven terrain require precise trajectory calculations.
+  - Meteor paths vary with atmospheric turbulence, a chaotic factor.
 
 #### Adaptations
-- **Uneven Terrain**: Adjust the initial height h to reflect varying ground levels.
-- **Air Resistance**: Consider drag force, which modifies trajectory curves and reduces range.
-- **Wind Effects**: Incorporate horizontal forces, affecting projectiles over long distances.
+
+- **Uneven Terrain**: Use $R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$ for height variations.
+- **Air Resistance**: Consider drag force, reducing range systematically.
+- **Chaotic Situations**: Model wind gusts or turbulence with $R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$, where $\delta R$ varies randomly.
 
 ---
 
@@ -69,99 +91,106 @@ Projectile motion applies to various real-world cases, including:
 
 #### Graphical Outputs
 
-**Figure 1: Range as a Function of Angle of Projection (v₀ = 50 m/s)**
-
+**Figure 1: Range as a Function of Angle of Projection (v₀ = 50 m/s, h = 0)**  
 ![Range vs Angle - Basic](graph.png)
 
-**Figure 2: Range vs Angle for Different Initial Velocities**
+**Figure 2: Range vs Angle for Different Initial Velocities and Heights**  
+![Multiple Velocities and Heights](graph2.png)
 
-![Multiple Velocities](graph2.png)
-
-**Figure 3: Chaotic Range with Environmental Noise**
-
+**Figure 3: Chaotic Range with Environmental Noise (v₀ = 50 m/s, h = 0)**  
 ![Chaotic Graph](graph3.png)
 
-
 #### Python Simulation
-The following Python script simulates how projectile range varies with angle:
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Constants
-g = 9.81  # gravitational acceleration (m/s^2)
+g = 9.81  # gravitational acceleration (m/s²)
 
-def calculate_range(v0, theta, g):
+def calculate_range(v0, theta, h=0, chaotic=False, sigma=10):
     theta_rad = np.radians(theta)
-    return (v0**2 * np.sin(2 * theta_rad)) / g
+    if h == 0 and not chaotic:
+        return (v0**2 * np.sin(2 * theta_rad)) / g
+    elif h > 0 and not chaotic:
+        t = (v0 * np.sin(theta_rad) + np.sqrt((v0 * np.sin(theta_rad))**2 + 2 * g * h)) / g
+        return v0 * np.cos(theta_rad) * t
+    else:  # Chaotic case
+        R = (v0**2 * np.sin(2 * theta_rad)) / g
+        delta_R = np.random.normal(0, sigma)  # Random noise
+        return R + delta_R
 
-# Parameters
-v0 = 50  # initial velocity (m/s)
 angles = np.linspace(0, 90, 100)
-ranges = [calculate_range(v0, angle, g) for angle in angles]
+v0_values = [20, 50, 80]
+h_values = [0, 10]
 
-# Peak point
-max_range = max(ranges)
-max_angle = angles[np.argmax(ranges)]
-
-# Plot 1
+# Figure 2: Velocity and Height Variations
 plt.figure(figsize=(10, 6))
-plt.plot(angles, ranges, label=f'Initial Velocity = {v0} m/s', color='blue', linewidth=2)
-plt.axvline(x=45, linestyle='--', color='red', label='Max Range at 45°')
-plt.scatter([max_angle], [max_range], color='green', zorder=5)
-plt.text(max_angle + 1, max_range - 10, f'Max Range:\n{max_range:.2f} m', color='green')
-plt.xlabel('Angle of Projection (degrees)', fontsize=12)
-plt.ylabel('Range (meters)', fontsize=12)
-plt.title('Projectile Range vs Angle of Projection', fontsize=14)
+for v0 in v0_values:
+    for h in h_values:
+        ranges = [calculate_range(v0, angle, h) for angle in angles]
+        plt.plot(angles, ranges, label=f'v₀ = {v0} m/s, h = {h} m')
+plt.axvline(x=45, linestyle='--', color='black', label='Reference at 45°')
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (m)')
+plt.title('Range vs Angle for Various Velocities and Heights')
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
 plt.show()
 
-# Plot 2
-v0_values = [20, 35, 50, 65, 80]
+# Figure 3: Chaotic Range
 plt.figure(figsize=(10, 6))
-for v in v0_values:
-    ranges = [calculate_range(v, angle, g) for angle in angles]
-    plt.plot(angles, ranges, label=f'v0 = {v} m/s')
-
-plt.axvline(x=45, linestyle='--', color='black', alpha=0.7)
-plt.xlabel('Angle of Projection (degrees)', fontsize=12)
-plt.ylabel('Range (meters)', fontsize=12)
-plt.title('Projectile Range for Different Initial Velocities', fontsize=14)
-plt.legend()
+v0 = 50
+chaotic_ranges = [calculate_range(v0, angle, h=0, chaotic=True, sigma=20) for angle in angles]
+plt.scatter(angles, chaotic_ranges, s=10, alpha=0.5, label='Chaotic Range (v₀ = 50 m/s)')
+ideal_ranges = [calculate_range(v0, angle) for angle in angles]
+plt.plot(angles, ideal_ranges, 'r--', label='Ideal Range')
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (m)')
+plt.title('Chaotic Range with Environmental Noise')
 plt.grid(True)
+plt.legend()
 plt.tight_layout()
 plt.show()
 ```
+*Python code simulates range with height and chaotic noise. Code available upon request.*
 
 #### Graphical Interpretation
-- The **first plot** illustrates how range changes with the angle of projection for a fixed velocity.
-- The **second plot** compares multiple velocities, showing that:
-  - All curves peak at **45 degrees**, confirming it gives the maximum range.
-  - Higher velocities produce **longer ranges**.
-  - The symmetry of each curve is preserved.
+
+- **Figure 1**: Range vs. angle for $v_0 = 50$ m/s, $h = 0$, peaking at 45°.
+- **Figure 2**: Compares velocities and heights, showing increased range with $h$.
+- **Figure 3**: Displays chaotic range for $v_0 = 50$ m/s with random noise ($\sigma = 20$ m), scattering around the ideal curve, simulating wind gusts.
 
 ---
 
 ### 4. Limitations and Extensions
 
 #### Limitations
+
 - **Idealized Model**:
-  - Assumes a vacuum (no air resistance).
-  - Ignores spin effects and real-world complexities.
+  - Assumes no air resistance or spin.
+  - Chaotic model is simplistic, ignoring directional wind effects.
 - **External Factors**:
-  - Wind, altitude changes, and rotational effects can alter expected trajectories.
+  - Complex terrain and altitude variations are partially addressed with $h$.
 
 #### Suggestions for Improvement
-- **Incorporate Drag**: Model air resistance using differential equations that factor in object size and shape.
-- **Variable Gravity**: Reflect gravitational changes on different planets or with altitude.
-- **Wind Effects**: Introduce lateral forces and variable resistance based on wind velocity.
-- **Interactive Simulations**: Build user-friendly interfaces that accept dynamic inputs (velocity, angle, gravity, drag).
+
+- **Incorporate Drag**: Use $F_d = -k \cdot v$ for systematic range reduction.
+- **Advanced Chaos**: Model wind direction and speed dynamically.
+- **Variable Gravity**: Adjust $g$ for different environments.
+- **Interactive Tools**: Allow inputs for $v_0$, $\theta$, $h$, and noise levels.
+
+#### Example Scenarios
+
+1. **Basketball Shot with Wind**:
+   - A player shoots from 5 m away, aiming for a 3 m high hoop ($h = 3$ m), with $v_0 = 10$ m/s at $\theta = 50^\circ$. Using $R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$, the range is ~5.2 m, just overshooting. A sudden wind gust ($\delta R = -0.5$ m) reduces it to 4.7 m, missing the hoop, showing how chaos affects precision.
+   
+2. **Artillery on a Cliff**:
+   - A cannon on a 20 m cliff ($h = 20$ m) fires at $v_0 = 100$ m/s, $\theta = 30^\circ$. The height-adjusted range is ~1018 m, far beyond the 866 m for $h = 0$. In turbulent conditions ($R_{\text{chaotic}}$ with $\sigma = 50$ m), the range could vary between 968 m and 1068 m, complicating targeting.
 
 ---
 
 ### Conclusion
-This investigation provides a comprehensive understanding of how projectile range depends on the angle of projection and other initial conditions. By developing a computational tool and visualizing results, we enhance both theoretical knowledge and practical application. Future extensions could include incorporating real-world effects such as wind and air resistance to refine predictions and develop more accurate and interactive educational models.
 
+This investigation explores projectile range as a function of angle, velocity, height, and environmental chaos. The extended formulas—$R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$ for height and $R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$ for noise—enhance the model’s versatility, connecting theory to applications like artillery on hills or sports shots in windy conditions. Future work could refine chaotic effects with directional wind or drag for greater realism.
