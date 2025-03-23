@@ -15,7 +15,7 @@ Projectile motion can be analyzed by breaking it into horizontal and vertical co
 - The horizontal component of velocity remains constant since there is no horizontal acceleration.
 - The displacement in the horizontal direction is given by:
 
-  $x = v_0 \cdot \cos(\theta) \cdot t$
+  $$x = v_0 \cdot \cos(\theta) \cdot t$$
 
 This equation shows that the horizontal motion is uniform and independent of gravity.
 
@@ -24,7 +24,7 @@ This equation shows that the horizontal motion is uniform and independent of gra
 - The vertical component of velocity changes due to gravitational acceleration.
 - The displacement in the vertical direction is given by:
 
-  $y = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} \cdot g \cdot t^2$
+  $$y = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} \cdot g \cdot t^2$$
 
 The vertical component influences the total time of flight and peak height of the projectile.
 
@@ -32,25 +32,25 @@ The vertical component influences the total time of flight and peak height of th
 
 For a projectile launched from ground level ($h = 0$), it reaches the ground when $y = 0$. Solving for time:
 
-$t = \frac{2 v_0 \sin(\theta)}{g}$
+$$t = \frac{2 v_0 \sin(\theta)}{g}$$
 
 If launched from an initial height $h$, the time of flight adjusts:
 
-$t = \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$
+$$t = \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$$
 
 ##### Range
 
 For ground level ($h = 0$):
 
-$R = \frac{v_0^2 \sin(2\theta)}{g}$
+$$R = \frac{v_0^2 \sin(2\theta)}{g}$$
 
 For an initial height $h$:
 
-$R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$
+$$R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}$$
 
 In chaotic situations (e.g., variable wind), range can be modeled with a perturbation term:
 
-$R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$
+$$R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R$$
 
 where $\delta R$ is a random noise factor (e.g., from wind gusts), typically drawn from a distribution like $\delta R \sim \mathcal{N}(0, \sigma)$, with $\sigma$ representing the noise magnitude.
 

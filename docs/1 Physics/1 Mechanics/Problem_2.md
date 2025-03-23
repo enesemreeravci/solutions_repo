@@ -10,12 +10,14 @@
 
 The forced damped pendulum is governed by a second-order nonlinear differential equation that accounts for gravity (restoring force), damping (friction), and an external periodic force. The equation of motion is:
 
-$\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \frac{g}{L} \sin(\theta) = F \cos(\omega t)$
+$$\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \frac{g}{L} \sin(\theta) = F \cos(\omega t)$$
 
 Where:
 - $\theta$: Angular displacement (radians)
-- $b$: Damping coefficient (s$^{-1}$)
-- $g$: Gravitational acceleration (m/s$^2$)
+- $b$: Damping coefficient  
+
+- $g$: Gravitational acceleration ($\mathrm{m/s^2}$)
+
 - $L$: Pendulum length (m)
 - $F$: Driving force amplitude (s$^{-2}$)
 - $\omega$: Driving frequency (rad/s)
