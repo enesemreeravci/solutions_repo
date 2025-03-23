@@ -1,6 +1,6 @@
-## Problem 1
+## Problem 2
 
-**Investigating the Range as a Function of the Angle of Projection**
+**Investigating the Dynamics of a Forced Damped Pendulum**
 
 ---
 
@@ -8,156 +8,175 @@
 
 #### Deriving the Equations of Motion
 
-Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, acting downward. This assumption simplifies the equations, making it easier to analyze motion using basic kinematic principles.
+The forced damped pendulum is governed by a second-order nonlinear differential equation that accounts for gravity (restoring force), damping (friction), and an external periodic force. The equation of motion is:
 
-##### Horizontal Motion:
+$\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \frac{g}{L} \sin(\theta) = F \cos(\omega t)$
 
-- The horizontal component of velocity remains constant since there is no horizontal acceleration.
-- The displacement in the horizontal direction is given by:
+Where:
+- $\theta$: Angular displacement (radians)
+- $b$: Damping coefficient (s$^{-1}$)
+- $g$: Gravitational acceleration (m/s$^2$)
+- $L$: Pendulum length (m)
+- $F$: Driving force amplitude (s$^{-2}$)
+- $\omega$: Driving frequency (rad/s)
+- $t$: Time (s)
 
-  x = v0 \* cos(theta) \* t
+##### Small-Angle Approximation
 
-This equation shows that the horizontal motion is uniform and independent of gravity.
+For small angles ($\theta \ll 1$), $\sin(\theta) \approx \theta$, simplifying the equation to a linear form:
 
-##### Vertical Motion:
+$\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \omega_0^2 \theta = F \cos(\omega t)$
 
-- The vertical component of velocity changes due to gravitational acceleration.
-- The displacement in the vertical direction is given by:
+Where $\omega_0 = \sqrt{\frac{g}{L}}$ is the natural frequency. The steady-state solution for this driven, damped harmonic oscillator is:
 
-  y = v0 \* sin(theta) \* t - 0.5 \* g \* t\*\*2
+$\theta(t) = A \cos(\omega t - \phi)$
 
-The vertical component influences the total time of flight and peak height of the projectile.
+Where:
+- Amplitude: $A = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b \omega)^2}}$
+- Phase: $\phi = \tan^{-1}\left(\frac{b \omega}{\omega_0^2 - \omega^2}\right)$
 
-##### Time of Flight
+##### Resonance
 
-The projectile reaches the ground when y = 0. Solving for time:
-
-```
-t = 0 and t = (2 * v0 * sin(theta)) / g
-```
-
-The first solution represents the initial launch time. The second solution gives the total flight duration.
-
-##### Range
-
-Substituting the time of flight into the horizontal motion equation:
-
-```
-R = (v0**2 * sin(2 * theta)) / g
-```
-
-This equation shows that the range depends on the initial velocity and the launch angle. The function sin(2 \* theta) explains why the range is symmetric around 45 degrees.
+Resonance occurs when the driving frequency $\omega$ approaches the natural frequency $\omega_0$, maximizing amplitude when $\omega = \sqrt{\omega_0^2 - \frac{b^2}{2}}$ (for underdamped cases, $b < 2 \omega_0$). This amplifies energy transfer from the external force to the pendulum.
 
 #### Family of Solutions
 
-From the range formula R = (v0\*\*2 \* sin(2 \* theta)) / g, we derive a family of solutions for different values of theta and v0. Notably:
-
-- For every angle θ, there exists a complementary angle (90 - θ) that yields the same range.
-- As v0 increases, the maximum achievable range increases quadratically.
-- The trajectory and time of flight can be visualized as parametric functions of angle and initial velocity.
+The nonlinear equation admits a range of behaviors—periodic, quasiperiodic, and chaotic—depending on $b$, $F$, and $\omega$. For small $F$ and $b$, motion is regular; for larger values, chaos emerges, as explored below.
 
 ---
 
-### 2. Practical Applications
+### 2. Analysis of Dynamics
+
+#### Parameter Influence
+
+- **Damping Coefficient ($b$)**: Low $b$ allows sustained oscillations; high $b$ suppresses motion, leading to decay.
+- **Driving Amplitude ($F$)**: Small $F$ produces linear-like motion; large $F$ drives nonlinearity, potentially causing chaos.
+- **Driving Frequency ($\omega$)**: Near $\omega_0$, resonance amplifies motion; far from $\omega_0$, motion may desynchronize or become chaotic.
+
+#### Transition to Chaos
+
+For large $F$ or specific $\omega$, the nonlinear $\sin(\theta)$ term dominates, leading to unpredictable motion. Chaotic behavior is characterized by sensitivity to initial conditions and aperiodic trajectories, observable in phase space or Poincaré sections.
+
+---
+
+### 3. Practical Applications
 
 #### Real-World Scenarios
 
-Projectile motion applies to various real-world cases, including:
-
-- **Sports**:
-  - Soccer players use precise angles to shoot the ball past defenders.
-  - Basketball shots require players to estimate the ideal arc for successful scoring.
-- **Engineering**:
-  - Projectile calculations are critical in artillery and missile guidance systems.
-- **Space Exploration & Astrophysics**:
-  - Scientists compute trajectories to optimize spacecraft landings.
-  - The motion of celestial bodies and meteor impacts follow similar equations.
+- **Energy Harvesting**: Pendulum-based devices capture ambient vibrations. *Example*: A pendulum in a watch converts wrist motion into energy.
+- **Suspension Bridges**: Oscillations from wind (forcing) can resonate or destabilize structures.
+- **Oscillating Circuits**: Electrical analogs mimic pendulum dynamics in signal processing.
 
 #### Adaptations
 
-- **Uneven Terrain**: Adjust the initial height h to reflect varying ground levels.
-- **Air Resistance**: Consider drag force, which modifies trajectory curves and reduces range.
-- **Wind Effects**: Incorporate horizontal forces, affecting projectiles over long distances.
+- **Nonlinear Damping**: Replace $b \frac{d \theta}{dt}$ with $b \left| \frac{d \theta}{dt} \right| \frac{d \theta}{dt}$ for realistic friction.
+- **Variable Forcing**: Use $F(t)$ for non-periodic inputs like gusts.
 
 ---
 
-### 3. Implementation
+### 4. Implementation
 
 #### Graphical Outputs
 
-**Figure 1: Range as a Function of Angle of Projection (v₀ = 50 m/s)**  
-![Range vs Angle - Basic](graph.png)
+**Figure 1: Motion vs Time (Resonance Case)**  
+![Motion vs Time](graph.png)
 
-**Figure 2: Range vs Angle for Different Initial Velocities**  
-![Multiple Velocities](graph2.png)
+**Figure 2: Phase Portrait (Chaotic Case)**  
+![Phase Portrait](graph2.png)
 
-**Figure 3: Chaotic Range with Environmental Noise**  
-![Chaotic Graph](graph3.png)
-
-
+**Figure 3: Poincaré Section (Transition to Chaos)**  
+![Poincaré Section](graph3.png)
 
 #### Python Simulation
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
-g = 9.81  # gravitational acceleration (m/s²)
+g = 9.81  # m/s²
+L = 1.0   # m
+omega0 = np.sqrt(g / L)
 
-def calculate_range(v0, theta):
-    theta_rad = np.radians(theta)
-    return (v0**2 * np.sin(2 * theta_rad)) / g
+def pendulum_deriv(state, t, b, F, omega):
+    theta, theta_dot = state
+    dtheta_dt = theta_dot
+    dtheta_dot_dt = -b * theta_dot - (g / L) * np.sin(theta) + F * np.cos(omega * t)
+    return [dtheta_dt, dtheta_dot_dt]
 
-angles = np.linspace(0, 90, 100)
-v0_values = [20, 35, 50, 65, 80]
+t = np.linspace(0, 50, 1000)
+initial_conditions = [0.1, 0]  # [theta, theta_dot]
 
+# Resonance Case
+sol_res = odeint(pendulum_deriv, initial_conditions, t, args=(0.1, 0.2, omega0))
 plt.figure(figsize=(10, 6))
-for v0 in v0_values:
-    ranges = [calculate_range(v0, angle) for angle in angles]
-    plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')
-
-plt.axvline(x=45, linestyle='--', color='black', label='Max Range at 45°')
-plt.xlabel('Angle of Projection (degrees)')
-plt.ylabel('Range (m)')
-plt.title('Range vs Angle for Various Initial Velocities')
+plt.plot(t, sol_res[:, 0], label='θ(t), b=0.1, F=0.2, ω=ω₀')
+plt.xlabel('Time (s)')
+plt.ylabel('Angle (rad)')
+plt.title('Motion vs Time (Resonance)')
 plt.grid(True)
 plt.legend()
-plt.tight_layout()
+plt.show()
+
+# Chaotic Case
+sol_chaos = odeint(pendulum_deriv, initial_conditions, t, args=(0.2, 1.5, 1.2))
+plt.figure(figsize=(10, 6))
+plt.plot(sol_chaos[:, 0], sol_chaos[:, 1], 'b-', alpha=0.5)
+plt.xlabel('θ (rad)')
+plt.ylabel('dθ/dt (rad/s)')
+plt.title('Phase Portrait (Chaotic, b=0.2, F=1.5, ω=1.2)')
+plt.grid(True)
+plt.show()
+
+# Poincaré Section
+poincare_theta = []
+poincare_theta_dot = []
+for i in range(len(t)):
+    if abs(np.mod(t[i] * 1.2 / (2 * np.pi), 1) - 0) < 0.01:  # Sample at driving period
+        poincare_theta.append(sol_chaos[i, 0])
+        poincare_theta_dot.append(sol_chaos[i, 1])
+plt.figure(figsize=(10, 6))
+plt.scatter(poincare_theta, poincare_theta_dot, s=5, c='r', alpha=0.5)
+plt.xlabel('θ (rad)')
+plt.ylabel('dθ/dt (rad/s)')
+plt.title('Poincaré Section (Chaotic)')
+plt.grid(True)
 plt.show()
 ```
- in Python to generate the graphs shown above. Code available upon request.*
+*Code simulates pendulum motion, phase portraits, and Poincaré sections.*
 
 #### Graphical Interpretation
 
-- **Figure 1** shows how the projectile's range changes with launch angle when the initial velocity is fixed at 50 m/s. The curve peaks at 45°, demonstrating the ideal angle for maximum distance.
-- **Figure 2** compares several different initial velocities. While all curves peak at 45°, higher velocities yield longer ranges.
-- **Figure 3** introduces randomness (e.g., wind/turbulence). It shows how real-world factors can cause unpredictable variations in range, even at the same angles. , showing that:
-  - All curves peak at **45 degrees**, confirming it gives the maximum range.
-  - Higher velocities produce **longer ranges**.
-  - The symmetry of each curve is preserved.
+- **Figure 1**: Shows resonance with large amplitude near $\omega = \omega_0$.
+- **Figure 2**: Phase portrait reveals chaotic looping for high $F$.
+- **Figure 3**: Poincaré section shows scattered points, indicating chaos.
 
 ---
 
-### 4. Limitations and Extensions
+### 5. Limitations and Extensions
 
 #### Limitations
 
-- **Idealized Model**:
-  - Assumes a vacuum (no air resistance).
-  - Ignores spin effects and real-world complexities.
-- **External Factors**:
-  - Wind, altitude changes, and rotational effects can alter expected trajectories.
+- **Linear Approximation**: Small-angle solution misses nonlinear effects.
+- **Simplified Damping**: Assumes constant $b$, ignoring velocity-dependent friction.
+- **Periodic Forcing**: Limits chaotic modeling to specific conditions.
 
 #### Suggestions for Improvement
 
-- **Incorporate Drag**: Model air resistance using differential equations that factor in object size and shape.
-- **Variable Gravity**: Reflect gravitational changes on different planets or with altitude.
-- **Wind Effects**: Introduce lateral forces and variable resistance based on wind velocity.
-- **Interactive Simulations**: Build user-friendly interfaces that accept dynamic inputs (velocity, angle, gravity, drag).
+- **Nonlinear Damping**: Use $b \left| \frac{d \theta}{dt} \right| \frac{d \theta}{dt}$.
+- **Non-Periodic Forcing**: Introduce random $F(t)$.
+- **Bifurcation Analysis**: Map transitions with varying $F$ or $\omega$.
+
+#### Example Scenarios
+
+1. **Energy Harvester on a Bridge**:
+   - A pendulum ($L = 1$ m, $b = 0.1$, $F = 0.2$, $\omega = \omega_0$) oscillates due to wind at resonance, yielding $A \approx 0.64$ rad (~37°). This motion powers a small generator, but chaotic wind gusts could disrupt efficiency.
+
+2. **Suspension Bridge Sway**:
+   - Wind drives a bridge segment ($b = 0.2$, $F = 1.5$, $\omega = 1.2$) into chaos. Initial $\theta = 0.1$ rad grows unpredictably, risking structural failure, as seen in phase portraits.
 
 ---
 
 ### Conclusion
 
-This investigation provides a comprehensive understanding of how projectile range depends on the angle of projection and other initial conditions. By developing a computational tool and visualizing results, we enhance both theoretical knowledge and practical application. Future extensions could include incorporating real-world effects such as wind and air resistance to refine predictions and develop more accurate and interactive educational models.
-
+This investigation reveals the forced damped pendulum’s rich dynamics, from resonance ($A = \frac{F}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b \omega)^2}}$) to chaos, driven by $b$, $F$, and $\omega$. Simulations and visualizations highlight transitions, connecting theory to applications like energy harvesting and structural engineering. Future extensions could explore nonlinear damping or random forcing for broader realism.
