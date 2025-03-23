@@ -171,15 +171,21 @@
 <h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
 <h4 id="deriving-the-equations-of-motion">Deriving the Equations of Motion</h4>
 <p>The forced damped pendulum is governed by a second-order nonlinear differential equation that accounts for gravity (restoring force), damping (friction), and an external periodic force. The equation of motion is:</p>
-<p><span class="arithmatex">\(\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \frac{g}{L} \sin(\theta) = F \cos(\omega t)\)</span></p>
+<div class="arithmatex">\[\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \frac{g}{L} \sin(\theta) = F \cos(\omega t)\]</div>
 <p>Where:
 - <span class="arithmatex">\(\theta\)</span>: Angular displacement (radians)
-- <span class="arithmatex">\(b\)</span>: Damping coefficient (s<span class="arithmatex">\(^{-1}\)</span>)
-- <span class="arithmatex">\(g\)</span>: Gravitational acceleration (m/s<span class="arithmatex">\(^2\)</span>)
-- <span class="arithmatex">\(L\)</span>: Pendulum length (m)
-- <span class="arithmatex">\(F\)</span>: Driving force amplitude (s<span class="arithmatex">\(^{-2}\)</span>)
-- <span class="arithmatex">\(\omega\)</span>: Driving frequency (rad/s)
-- <span class="arithmatex">\(t\)</span>: Time (s)</p>
+- <span class="arithmatex">\(b\)</span>: Damping coefficient  </p>
+<ul>
+<li>
+<p><span class="arithmatex">\(g\)</span>: Gravitational acceleration (<span class="arithmatex">\(\mathrm{m/s^2}\)</span>)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(L\)</span>: Pendulum length (m)</p>
+</li>
+<li><span class="arithmatex">\(F\)</span>: Driving force amplitude (s<span class="arithmatex">\(^{-2}\)</span>)</li>
+<li><span class="arithmatex">\(\omega\)</span>: Driving frequency (rad/s)</li>
+<li><span class="arithmatex">\(t\)</span>: Time (s)</li>
+</ul>
 <h5 id="small-angle-approximation">Small-Angle Approximation</h5>
 <p>For small angles (<span class="arithmatex">\(\theta \ll 1\)</span>), <span class="arithmatex">\(\sin(\theta) \approx \theta\)</span>, simplifying the equation to a linear form:</p>
 <p><span class="arithmatex">\(\frac{d^2 \theta}{dt^2} + b \frac{d \theta}{dt} + \omega_0^2 \theta = F \cos(\omega t)\)</span></p>

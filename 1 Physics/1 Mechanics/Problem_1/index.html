@@ -168,27 +168,27 @@
 <li>The horizontal component of velocity remains constant since there is no horizontal acceleration.</li>
 <li>The displacement in the horizontal direction is given by:</li>
 </ul>
-<p><span class="arithmatex">\(x = v_0 \cdot \cos(\theta) \cdot t\)</span></p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(x = v_0 \cdot \cos(\theta) \cdot t\)</span>\)</span></p>
 <p>This equation shows that the horizontal motion is uniform and independent of gravity.</p>
 <h5 id="vertical-motion">Vertical Motion:</h5>
 <ul>
 <li>The vertical component of velocity changes due to gravitational acceleration.</li>
 <li>The displacement in the vertical direction is given by:</li>
 </ul>
-<p><span class="arithmatex">\(y = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} \cdot g \cdot t^2\)</span></p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(y = v_0 \cdot \sin(\theta) \cdot t - \frac{1}{2} \cdot g \cdot t^2\)</span>\)</span></p>
 <p>The vertical component influences the total time of flight and peak height of the projectile.</p>
 <h5 id="time-of-flight">Time of Flight</h5>
 <p>For a projectile launched from ground level (<span class="arithmatex">\(h = 0\)</span>), it reaches the ground when <span class="arithmatex">\(y = 0\)</span>. Solving for time:</p>
-<p><span class="arithmatex">\(t = \frac{2 v_0 \sin(\theta)}{g}\)</span></p>
+<div class="arithmatex">\[t = \frac{2 v_0 \sin(\theta)}{g}\]</div>
 <p>If launched from an initial height <span class="arithmatex">\(h\)</span>, the time of flight adjusts:</p>
-<p><span class="arithmatex">\(t = \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}\)</span></p>
+<div class="arithmatex">\[t = \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}\]</div>
 <h5 id="range">Range</h5>
 <p>For ground level (<span class="arithmatex">\(h = 0\)</span>):</p>
-<p><span class="arithmatex">\(R = \frac{v_0^2 \sin(2\theta)}{g}\)</span></p>
+<div class="arithmatex">\[R = \frac{v_0^2 \sin(2\theta)}{g}\]</div>
 <p>For an initial height <span class="arithmatex">\(h\)</span>:</p>
-<p><span class="arithmatex">\(R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}\)</span></p>
+<div class="arithmatex">\[R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}\]</div>
 <p>In chaotic situations (e.g., variable wind), range can be modeled with a perturbation term:</p>
-<p><span class="arithmatex">\(R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R\)</span></p>
+<div class="arithmatex">\[R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R\]</div>
 <p>where <span class="arithmatex">\(\delta R\)</span> is a random noise factor (e.g., from wind gusts), typically drawn from a distribution like <span class="arithmatex">\(\delta R \sim \mathcal{N}(0, \sigma)\)</span>, with <span class="arithmatex">\(\sigma\)</span> representing the noise magnitude.</p>
 <h4 id="family-of-solutions">Family of Solutions</h4>
 <p>From the range formulas—<span class="arithmatex">\(R = \frac{v_0^2 \sin(2\theta)}{g}\)</span> (for <span class="arithmatex">\(h = 0\)</span>), <span class="arithmatex">\(R = v_0 \cos(\theta) \cdot \frac{v_0 \sin(\theta) + \sqrt{(v_0 \sin(\theta))^2 + 2 g h}}{g}\)</span> (for <span class="arithmatex">\(h &gt; 0\)</span>), and <span class="arithmatex">\(R_{\text{chaotic}} = \frac{v_0^2 \sin(2\theta)}{g} + \delta R\)</span> (for noise)—we derive a family of solutions for different <span class="arithmatex">\(\theta\)</span>, <span class="arithmatex">\(v_0\)</span>, <span class="arithmatex">\(g\)</span>, <span class="arithmatex">\(h\)</span>, and environmental variability. Notably:</p>
