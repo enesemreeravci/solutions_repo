@@ -1,130 +1,163 @@
-# Investigating the Dynamics of a Forced Damped Pendulum
+## Problem 1
 
-## 1. Theoretical Foundation
+**Investigating the Range as a Function of the Angle of Projection**
 
-### Governing Equation
-The motion of a forced damped pendulum is described by the following nonlinear differential equation:
+---
 
-$$
-\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \sin(\theta) = A \cos(\omega t)
-$$
+### 1. Theoretical Foundation
 
-where:
-- \( \theta \) is the angular displacement,
-- \( b \) is the damping coefficient,
-- \( g/L \) is the natural frequency squared,
-- \( A \) is the amplitude of the external periodic force,
-- \( \omega \) is the driving frequency,
-- \( t \) is time.
+#### Deriving the Equations of Motion
 
-### Small-Angle Approximation
-For small angles (\( \theta \approx 0 \)), we can approximate \( \sin(\theta) \approx \theta \), simplifying the equation to:
+Projectile motion can be analyzed by breaking it into horizontal and vertical components. Assuming no air resistance, the only acceleration is due to gravity, acting downward. This assumption simplifies the equations, making it easier to analyze motion using basic kinematic principles.
 
-$$
-\frac{d^2\theta}{dt^2} + b \frac{d\theta}{dt} + \frac{g}{L} \theta = A \cos(\omega t)
-$$
+##### Horizontal Motion:
 
-This leads to a driven damped harmonic oscillator equation, whose solutions exhibit resonance when \( \omega \approx \sqrt{g/L} \) (natural frequency of a simple pendulum).
+- The horizontal component of velocity remains constant since there is no horizontal acceleration.
+- The displacement in the horizontal direction is given by:
 
-## 2. Analysis of Dynamics
+  x = v0 \* cos(theta) \* t
 
-### Effect of System Parameters
-- **Damping Coefficient (b):** Higher damping suppresses oscillations and prevents chaos.
-- **Driving Amplitude (A):** Stronger forcing can induce chaotic motion.
-- **Driving Frequency (\( \omega \)):** Resonance occurs when \( \omega \) matches the system’s natural frequency.
+This equation shows that the horizontal motion is uniform and independent of gravity.
 
-### Transition to Chaos
-At certain parameter values, the motion becomes chaotic, meaning small changes in initial conditions lead to drastically different trajectories. This is studied via phase portraits, Poincaré sections, and bifurcation diagrams.
+##### Vertical Motion:
 
-## 3. Practical Applications
+- The vertical component of velocity changes due to gravitational acceleration.
+- The displacement in the vertical direction is given by:
 
-### Real-World Examples
-- **Energy Harvesting:** Used in piezoelectric devices to extract energy from mechanical oscillations.
-- **Suspension Bridges:** Forced oscillations influence bridge stability.
-- **Oscillating Circuits:** Analogous behavior is found in RLC circuits under AC forcing.
+  y = v0 \* sin(theta) \* t - 0.5 \* g \* t\*\*2
 
-## 4. Implementation
+The vertical component influences the total time of flight and peak height of the projectile.
 
-### Python Simulation
-The following Python script simulates the forced damped pendulum and includes Poincaré sections and bifurcation analysis:
+##### Time of Flight
+
+The projectile reaches the ground when y = 0. Solving for time:
+
+```
+t = 0 and t = (2 * v0 * sin(theta)) / g
+```
+
+The first solution represents the initial launch time. The second solution gives the total flight duration.
+
+##### Range
+
+Substituting the time of flight into the horizontal motion equation:
+
+```
+R = (v0**2 * sin(2 * theta)) / g
+```
+
+This equation shows that the range depends on the initial velocity and the launch angle. The function sin(2 \* theta) explains why the range is symmetric around 45 degrees.
+
+#### Family of Solutions
+
+From the range formula R = (v0\*\*2 \* sin(2 \* theta)) / g, we derive a family of solutions for different values of theta and v0. Notably:
+
+- For every angle θ, there exists a complementary angle (90 - θ) that yields the same range.
+- As v0 increases, the maximum achievable range increases quadratically.
+- The trajectory and time of flight can be visualized as parametric functions of angle and initial velocity.
+
+---
+
+### 2. Practical Applications
+
+#### Real-World Scenarios
+
+Projectile motion applies to various real-world cases, including:
+
+- **Sports**:
+  - Soccer players use precise angles to shoot the ball past defenders.
+  - Basketball shots require players to estimate the ideal arc for successful scoring.
+- **Engineering**:
+  - Projectile calculations are critical in artillery and missile guidance systems.
+- **Space Exploration & Astrophysics**:
+  - Scientists compute trajectories to optimize spacecraft landings.
+  - The motion of celestial bodies and meteor impacts follow similar equations.
+
+#### Adaptations
+
+- **Uneven Terrain**: Adjust the initial height h to reflect varying ground levels.
+- **Air Resistance**: Consider drag force, which modifies trajectory curves and reduces range.
+- **Wind Effects**: Incorporate horizontal forces, affecting projectiles over long distances.
+
+---
+
+### 3. Implementation
+
+#### Graphical Outputs
+
+**Figure 1: Range as a Function of Angle of Projection (v₀ = 50 m/s)**  
+![Range vs Angle - Basic](graph.png)
+
+**Figure 2: Range vs Angle for Different Initial Velocities**  
+![Multiple Velocities](graph2.png)
+
+**Figure 3: Chaotic Range with Environmental Noise**  
+![Chaotic Graph](graph3.png)
+
+
+
+#### Python Simulation
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
 
-# Define the differential equation for the forced damped pendulum
-def forced_damped_pendulum(t, y, b, A, omega):
-    theta, omega_dot = y  # Unpack state variables
-    dtheta_dt = omega_dot
-    domega_dt = -b * omega_dot - np.sin(theta) + A * np.cos(omega * t)
-    return [dtheta_dt, domega_dt]
+g = 9.81  # gravitational acceleration (m/s²)
 
-# Parameters
-b = 0.5      # Damping coefficient
-A = 1.2      # Driving force amplitude
-omega = 2.0  # Driving force frequency
-initial_conditions = [0.1, 0]  # Initial angle and angular velocity
+def calculate_range(v0, theta):
+    theta_rad = np.radians(theta)
+    return (v0**2 * np.sin(2 * theta_rad)) / g
 
-time_span = (0, 100)  # Time span for integration
-time_eval = np.linspace(time_span[0], time_span[1], 5000)  # Time points
+angles = np.linspace(0, 90, 100)
+v0_values = [20, 35, 50, 65, 80]
 
-# Solve the ODE
-solution = solve_ivp(forced_damped_pendulum, time_span, initial_conditions, t_eval=time_eval, args=(b, A, omega))
-
-# Plot results
 plt.figure(figsize=(10, 6))
-plt.plot(solution.t, solution.y[0], label='Theta (Angle)')
-plt.xlabel('Time (s)')
-plt.ylabel('Angle (radians)')
-plt.title('Forced Damped Pendulum Motion')
+for v0 in v0_values:
+    ranges = [calculate_range(v0, angle) for angle in angles]
+    plt.plot(angles, ranges, label=f'v₀ = {v0} m/s')
+
+plt.axvline(x=45, linestyle='--', color='black', label='Max Range at 45°')
+plt.xlabel('Angle of Projection (degrees)')
+plt.ylabel('Range (m)')
+plt.title('Range vs Angle for Various Initial Velocities')
+plt.grid(True)
 plt.legend()
-plt.grid()
-plt.show()
-
-# Phase Space Plot
-plt.figure(figsize=(10, 6))
-plt.plot(solution.y[0], solution.y[1], label='Phase Portrait')
-plt.xlabel('Angle (radians)')
-plt.ylabel('Angular Velocity (rad/s)')
-plt.title('Phase Space of Forced Damped Pendulum')
-plt.legend()
-plt.grid()
-plt.show()
-
-# Poincaré Section
-poincare_times = np.arange(0, time_span[1], np.pi / omega)
-theta_poincare = []
-omega_poincare = []
-for t in poincare_times:
-    idx = np.abs(solution.t - t).argmin()
-    theta_poincare.append(solution.y[0][idx])
-    omega_poincare.append(solution.y[1][idx])
-
-plt.figure(figsize=(10, 6))
-plt.scatter(theta_poincare, omega_poincare, s=10, color='red')
-plt.xlabel('Angle (radians)')
-plt.ylabel('Angular Velocity (rad/s)')
-plt.title('Poincaré Section of Forced Damped Pendulum')
-plt.grid()
+plt.tight_layout()
 plt.show()
 ```
+ in Python to generate the graphs shown above. Code available upon request.*
 
-### Graphical Interpretation
-- **Time Evolution:** Shows oscillatory or chaotic behavior.
-- **Phase Portrait:** Helps visualize stability and transitions to chaos.
-- **Poincaré Section:** Provides insight into periodicity and chaos.
+#### Graphical Interpretation
 
-## 5. Limitations and Future Work
+- **Figure 1** shows how the projectile's range changes with launch angle when the initial velocity is fixed at 50 m/s. The curve peaks at 45°, demonstrating the ideal angle for maximum distance.
+- **Figure 2** compares several different initial velocities. While all curves peak at 45°, higher velocities yield longer ranges.
+- **Figure 3** introduces randomness (e.g., wind/turbulence). It shows how real-world factors can cause unpredictable variations in range, even at the same angles. , showing that:
+  - All curves peak at **45 degrees**, confirming it gives the maximum range.
+  - Higher velocities produce **longer ranges**.
+  - The symmetry of each curve is preserved.
 
-### Limitations
-- **Neglects higher-order damping terms** like air resistance.
-- **Fixed periodic forcing;** does not explore non-periodic effects.
+---
 
-### Future Directions
-- **Bifurcation Analysis:** Vary parameters to observe critical transitions.
-- **Poincaré Sections:** Identify regions of chaotic motion.
-- **Experimental Validation:** Compare numerical results with real-world measurements.
+### 4. Limitations and Extensions
 
-## Conclusion
-This study explores the intricate behavior of a forced damped pendulum, from resonance to chaos. Using computational models, we gain insight into oscillatory systems with broad applications in physics and engineering. Further research can extend this model to analyze real-world oscillations with nonlinear effects.
+#### Limitations
+
+- **Idealized Model**:
+  - Assumes a vacuum (no air resistance).
+  - Ignores spin effects and real-world complexities.
+- **External Factors**:
+  - Wind, altitude changes, and rotational effects can alter expected trajectories.
+
+#### Suggestions for Improvement
+
+- **Incorporate Drag**: Model air resistance using differential equations that factor in object size and shape.
+- **Variable Gravity**: Reflect gravitational changes on different planets or with altitude.
+- **Wind Effects**: Introduce lateral forces and variable resistance based on wind velocity.
+- **Interactive Simulations**: Build user-friendly interfaces that accept dynamic inputs (velocity, angle, gravity, drag).
+
+---
+
+### Conclusion
+
+This investigation provides a comprehensive understanding of how projectile range depends on the angle of projection and other initial conditions. By developing a computational tool and visualizing results, we enhance both theoretical knowledge and practical application. Future extensions could include incorporating real-world effects such as wind and air resistance to refine predictions and develop more accurate and interactive educational models.
+

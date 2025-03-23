@@ -1,97 +1,151 @@
-# Trajectories of a Freely Released Payload Near Earth
+## Problem 3
 
-## 1. Theoretical Foundation
+**Trajectories of a Freely Released Payload Near Earth**
 
-### Types of Possible Trajectories
-When a payload is released from a moving rocket near Earth, its trajectory is determined by initial velocity, altitude, and gravitational forces. The possible trajectories include:
+---
 
-1. **Elliptical Orbit**: If the payload has sufficient tangential velocity but remains bound to Earth’s gravity, it enters an elliptical orbit.
-2. **Parabolic Trajectory**: If the payload achieves exactly the escape velocity, it follows a parabolic path, escaping Earth but not entering orbit.
-3. **Hyperbolic Escape**: If the velocity exceeds escape velocity, the payload follows a hyperbolic trajectory and leaves Earth permanently.
-4. **Suborbital Path (Reentry)**: If the payload has insufficient velocity, it falls back to Earth, reentering the atmosphere.
+### 1. Theoretical Foundation
 
-### Governing Equations
-#### Newton's Law of Universal Gravitation
-The gravitational force acting on the payload is given by:
+#### Analyzing Possible Trajectories
 
-$$
-F_g = \frac{G M m}{r^2}
-$$
+When a payload is released from a moving rocket near Earth, its trajectory depends on its specific energy, determined by its initial position and velocity. Using Newton’s law of gravitation, the force on the payload (mass $m$) due to Earth (mass $M$) is:
 
-where:
-- $$ G $$ is the gravitational constant,
-- $$ M $$ is Earth's mass,
-- $$ m $$ is the payload mass,
-- $$ r $$ is the distance from Earth's center.
+$F = \frac{G M m}{r^2}$
+
+The specific mechanical energy $\epsilon$ of the payload determines its trajectory:
+
+$\epsilon = \frac{v^2}{2} - \frac{G M}{r}$
+
+Where $v$ is the payload’s velocity, $r$ is its distance from Earth’s center, $G$ is the gravitational constant, and $M$ is Earth’s mass. The trajectory type is classified as:
+
+- **Elliptical**: $\epsilon < 0$ (bound orbit, e.g., satellite deployment).
+- **Parabolic**: $\epsilon = 0$ (escape trajectory at critical velocity).
+- **Hyperbolic**: $\epsilon > 0$ (escape with excess velocity).
+
+The eccentricity $e$ further defines the orbit:
+
+$e = \sqrt{1 + \frac{2 \epsilon h^2}{(G M)^2}}$
+
+Where $h = r v \cos\phi$ is the specific angular momentum, and $\phi$ is the angle between the velocity vector and the radial direction. For $e < 1$ (elliptical), $e = 1$ (parabolic), $e > 1$ (hyperbolic).
 
 #### Equations of Motion
-Using Newton’s Second Law:
 
-$$
-F = m a
-$$
+In Cartesian coordinates, the acceleration due to gravity is:
 
-The acceleration due to gravity:
+$\frac{d^2 x}{dt^2} = -\frac{G M x}{r^3}, \quad \frac{d^2 y}{dt^2} = -\frac{G M y}{r^3}$
 
-$$
- a = \frac{G M}{r^2}
-$$
+Where $r = \sqrt{x^2 + y^2}$. These equations are solved numerically given initial conditions (position, velocity, altitude).
 
-The velocity components of the payload determine its trajectory:
+---
 
-- **Radial Velocity**: Determines whether the payload moves away or toward Earth.
-- **Tangential Velocity**: Governs the curvature of its orbit.
+### 2. Numerical Analysis
 
-## 2. Numerical Analysis
-To compute the payload's path, we use numerical integration methods such as **Euler’s Method** or **Runge-Kutta Methods** to solve for motion under gravity.
+Consider a payload released at altitude $h = 500$ km ($r = R_{\text{earth}} + h = 6,871$ km), with initial velocity $v_0$ at angle $\phi$ relative to the radial direction. Earth’s parameters: $M = 5.972 \times 10^{24}$ kg, $R_{\text{earth}} = 6,371$ km, $G = 6.67430 \times 10^{-11}$ m³ kg⁻¹ s⁻².
 
-### Computational Simulation
+- **Escape Velocity**: $v_{\text{esc}} = \sqrt{\frac{2 G M}{r}} \approx 10.9$ km/s at $h = 500$ km.
+- **Circular Orbit Velocity**: $v_{\text{circ}} = \sqrt{\frac{G M}{r}} \approx 7.7$ km/s.
+
+Test cases:
+- $v_0 = 7.5$ km/s, $\phi = 90^\circ$: Slightly below circular velocity, expect an elliptical orbit.
+- $v_0 = 10.9$ km/s, $\phi = 90^\circ$: Parabolic trajectory.
+- $v_0 = 12.0$ km/s, $\phi = 90^\circ$: Hyperbolic trajectory.
+
+---
+
+### 3. Applications to Space Missions
+
+- **Orbital Insertion**: $v_0 \approx v_{\text{circ}}$ places the payload in a stable orbit (e.g., satellite deployment).
+- **Reentry**: Low $v_0$ leads to an elliptical orbit intersecting Earth, simulating reentry.
+- **Escape**: $v_0 \geq v_{\text{esc}}$ allows escape, relevant for interplanetary missions.
+
+---
+
+### 4. Implementation
+
+#### Graphical Outputs
+
+**Figure 1: Payload Trajectories Near Earth**  
+![Payload Trajectories](payload_trajectories.png)  
+*Plots elliptical, parabolic, and hyperbolic trajectories with Earth at the origin, as shown in the generated plot.*
+
+#### Python Simulation
+
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
+from scipy.integrate import odeint
 
-# Constants
-G = 6.67430e-11  # Gravitational constant (m^3/kg/s^2)
-M_earth = 5.972e24  # Mass of Earth (kg)
-R_earth = 6.371e6  # Radius of Earth (m)
+G = 6.67430e-11  # m³ kg⁻¹ s⁻²
+M = 5.972e24     # kg (Earth’s mass)
+R_earth = 6371e3 # m
 
-# Initial Conditions
-altitude = 300000  # 300 km above Earth
-r0 = R_earth + altitude  # Initial distance from Earth's center (m)
-v0 = 7500  # Initial velocity (m/s), adjust for different cases
-angle = 45  # Initial velocity direction (degrees)
-vx0 = v0 * np.cos(np.radians(angle))
-vy0 = v0 * np.sin(np.radians(angle))
-
-# Equations of Motion
-def equations(t, y):
-    x, vx, y, vy = y
+def deriv(state, t):
+    x, y, vx, vy = state
     r = np.sqrt(x**2 + y**2)
-    ax = -G * M_earth * x / r**3
-    ay = -G * M_earth * y / r**3
-    return [vx, ax, vy, ay]
+    ax = -G * M * x / r**3
+    ay = -G * M * y / r**3
+    return [vx, vy, ax, ay]
 
-# Solve using numerical integration
-time_span = (0, 5000)
-y0 = [r0, vx0, 0, vy0]
-solution = solve_ivp(equations, time_span, y0, t_eval=np.linspace(0, 5000, 1000))
+# Initial conditions
+h = 500e3  # Altitude (m)
+r0 = R_earth + h
+t = np.linspace(0, 3600, 1000)  # 1 hour
 
-# Plot Results
-plt.figure(figsize=(8, 8))
-plt.plot(solution.y[0], solution.y[2], label='Payload Trajectory')
-plt.xlabel("X Position (m)")
-plt.ylabel("Y Position (m)")
-plt.title("Trajectory of a Freely Released Payload Near Earth")
+# Velocities for different trajectories
+v_circ = np.sqrt(G * M / r0)  # Circular velocity
+v_esc = np.sqrt(2 * G * M / r0)  # Escape velocity
+cases = [
+    ('Elliptical', 0.975 * v_circ, 'b'),  # Below circular
+    ('Parabolic', v_esc, 'g'),            # At escape
+    ('Hyperbolic', 1.1 * v_esc, 'r')      # Above escape
+]
+
+plt.figure(figsize=(10, 10))
+for label, v0, color in cases:
+    state0 = [r0, 0, 0, v0]  # Start at (r0, 0) with velocity in y-direction
+    sol = odeint(deriv, state0, t)
+    plt.plot(sol[:, 0], sol[:, 1], color, label=label)
+
+# Plot Earth
+theta = np.linspace(0, 2 * np.pi, 100)
+plt.plot(R_earth * np.cos(theta), R_earth * np.sin(theta), 'k-', label='Earth')
+plt.xlabel('X (m)')
+plt.ylabel('Y (m)')
+plt.title('Payload Trajectories Near Earth')
+plt.axis('equal')
+plt.grid(True)
 plt.legend()
-plt.grid()
+plt.savefig('payload_trajectories.png')
 plt.show()
 ```
+*Code simulates and visualizes payload trajectories, saving the plot as `payload_trajectories.png`.*
 
-## 3. Real-World Applications
-- **Satellite Deployment**: Understanding initial velocity requirements for stable orbits.
-- **Spacecraft Reentry**: Calculating safe descent trajectories.
-- **Interplanetary Travel**: Planning escape trajectories for missions beyond Earth.
+#### Graphical Interpretation
 
-## 4. Conclusion
-By analyzing payload motion under gravity, we determine whether it will orbit, escape, or reenter. Numerical simulations provide insights for space mission planning and trajectory optimization. Future enhancements could include atmospheric drag effects and complex orbital maneuvers.
+- **Figure 1**: Displays three trajectories starting at an altitude of 500 km:
+  - **Elliptical (blue)**: The payload loops back toward Earth, forming a closed orbit with perigee closer to Earth.
+  - **Parabolic (green)**: The payload just escapes, following a path that asymptotically approaches infinity.
+  - **Hyperbolic (red)**: The payload escapes with excess speed, following a sharply diverging trajectory away from Earth.
+
+---
+
+### 5. Limitations and Extensions
+
+#### Limitations
+
+- **No Drag**: Ignores atmospheric effects at low altitudes.
+- **Simplified Gravity**: Assumes point-mass Earth, neglecting oblateness.
+
+#### Example Scenarios
+
+1. **Satellite Deployment**:
+   - At $v_0 = 7.5$ km/s, the payload enters an elliptical orbit, ideal for a communication satellite.
+
+2. **Lunar Mission**:
+   - At $v_0 = 12$ km/s, a hyperbolic trajectory ensures escape toward the Moon.
+
+---
+
+### Conclusion
+
+The payload’s trajectory—elliptical ($\epsilon < 0$), parabolic ($\epsilon = 0$), or hyperbolic ($\epsilon > 0$)—depends on its specific energy $\epsilon = \frac{v^2}{2} - \frac{G M}{r}$. Numerical simulations reveal these paths, supporting applications like satellite deployment and lunar missions. Future work could include drag or multi-body effects for realism.
