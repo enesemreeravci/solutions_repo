@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Interference Patterns on a Water Surface - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Interference Patterns on a Water Surface";
         var mkdocs_page_input_path = "1 Physics/3 Waves/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,8 +64,32 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">3 Waves</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Interference Patterns on a Water Surface</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#task">Task</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-follow">Steps to Follow</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#assumptions">Assumptions</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#analysis-for-each-polygon">Analysis for Each Polygon</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-analysis">Detailed Analysis</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#supplementary-formulas-and-concepts">Supplementary Formulas and Concepts</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-observations">Summary of Observations</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comparative-analysis">Comparative Analysis</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +135,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">3 Waves</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Interference Patterns on a Water Surface</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +143,304 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="interference-patterns-on-a-water-surface">Interference Patterns on a Water Surface</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Interference occurs when waves from different sources overlap, creating new patterns. On a water surface, this can be observed when ripples from different points meet, forming distinctive interference patterns. These patterns show how waves combine, either reinforcing each other (constructive interference) or canceling out (destructive interference).</p>
+<p>Studying these patterns helps us understand wave behavior in a simple, visual way. It also allows us to explore concepts like the relationship between wave phase and the effects of multiple sources. This task offers a hands-on approach to learning about wave interactions and their real-world applications, making it an interesting and engaging way to dive into wave physics.</p>
+<h2 id="task">Task</h2>
+<p>We need to analyze the interference patterns formed on a water surface due to the superposition of waves emitted from point sources placed at the vertices of a regular polygon. The wave from a single source at position <span class="arithmatex">\((x_i, y_i)\)</span> is given by:</p>
+<div class="arithmatex">\[
+\eta_i(x, y, t) = A \cos(k r_i - \omega t + \phi_i)
+\]</div>
+<p>where:
+- <span class="arithmatex">\(\eta_i(x, y, t)\)</span>: Displacement at point <span class="arithmatex">\((x, y)\)</span> at time <span class="arithmatex">\(t\)</span>.
+- <span class="arithmatex">\(A\)</span>: Amplitude.
+- <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span>: Wave number, with <span class="arithmatex">\(\lambda\)</span> as the wavelength.
+- <span class="arithmatex">\(r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}\)</span>: Distance from the source to point <span class="arithmatex">\((x, y)\)</span>.
+- <span class="arithmatex">\(\omega = 2\pi f\)</span>: Angular frequency, with <span class="arithmatex">\(f\)</span> as the frequency.
+- <span class="arithmatex">\(\phi_i\)</span>: Initial phase.</p>
+<h3 id="steps-to-follow">Steps to Follow</h3>
+<ol>
+<li><strong>Select a Regular Polygon</strong>: We’ll analyze four polygons: triangle, square, pentagon, and hexagon.</li>
+<li><strong>Position the Sources</strong>: Place point sources at the vertices of each polygon.</li>
+<li><strong>Wave Equations</strong>: Write the wave equations for each source.</li>
+<li><strong>Superposition of Waves</strong>: Sum the displacements:
+   $$
+   \eta(x, y, t) = \sum_{i=1}^N \eta_i(x, y, t)
+   $$
+   where <span class="arithmatex">\(N\)</span> is the number of sources.</li>
+<li><strong>Analyze Interference Patterns</strong>: Identify constructive and destructive interference regions.</li>
+<li><strong>Visualization</strong>: Use the provided images for visualization: <code>triangle_only.png</code> (triangle interference pattern), <code>square_only.png</code> (square interference pattern), <code>pentagon_only.png</code> (pentagon interference pattern), and <code>hexagon_only.png</code> (hexagon interference pattern).</li>
+</ol>
+<h3 id="assumptions">Assumptions</h3>
+<ul>
+<li>All sources emit waves with the same amplitude <span class="arithmatex">\(A\)</span>, wavelength <span class="arithmatex">\(\lambda\)</span>, and frequency <span class="arithmatex">\(f\)</span>.</li>
+<li>The waves are coherent (constant phase difference, <span class="arithmatex">\(\phi_i = 0\)</span>).</li>
+<li>We’ll use the provided images for visualization.</li>
+</ul>
+<hr/>
+<h2 id="analysis-for-each-polygon">Analysis for Each Polygon</h2>
+<h3 id="detailed-analysis">Detailed Analysis</h3>
+<h4 id="1-equilateral-triangle-3-sources">1. Equilateral Triangle (3 Sources)</h4>
+<h5 id="position-the-sources">Position the Sources</h5>
+<p>For an equilateral triangle centered at the origin with side length <span class="arithmatex">\(s = 2\)</span> (radius to vertex <span class="arithmatex">\(\approx 1\)</span>):
+- Vertex 1: <span class="arithmatex">\((0, 1)\)</span>
+- Vertex 2: <span class="arithmatex">\((-\sqrt{3}/2, -1/2) \approx (-0.866, -0.5)\)</span>
+- Vertex 3: <span class="arithmatex">\((\sqrt{3}/2, -1/2) \approx (0.866, -0.5)\)</span></p>
+<h5 id="wave-equations">Wave Equations</h5>
+<p>For each source:
+- Source 1 at <span class="arithmatex">\((0, 1)\)</span>:
+  $$
+  r_1 = \sqrt{(x - 0)^2 + (y - 1)^2}
+  $$
+  $$
+  \eta_1(x, y, t) = A \cos(k r_1 - \omega t)
+  $$
+- Source 2 at <span class="arithmatex">\((-0.866, -0.5)\)</span>:
+  $$
+  r_2 = \sqrt{(x + 0.866)^2 + (y + 0.5)^2}
+  $$
+  $$
+  \eta_2(x, y, t) = A \cos(k r_2 - \omega t)
+  $$
+- Source 3 at <span class="arithmatex">\((0.866, -0.5)\)</span>:
+  $$
+  r_3 = \sqrt{(x - 0.866)^2 + (y + 0.5)^2}
+  $$
+  $$
+  \eta_3(x, y, t) = A \cos(k r_3 - \omega t)
+  $$</p>
+<h5 id="superposition">Superposition</h5>
+<p>The total wave displacement at any point is the sum of individual contributions:
+$$
+\eta(x, y, t) = A \left[ \cos(k r_1 - \omega t) + \cos(k r_2 - \omega t) + \cos(k r_3 - \omega t) \right]
+$$</p>
+<p>If all sources are in phase (i.e., <span class="arithmatex">\(\phi_i = 0\)</span>), constructive interference occurs where the path differences are integer multiples of the wavelength:
+$$
+\Delta r = n\lambda, \quad n \in \mathbb{Z}
+$$
+Destructive interference occurs when the path differences are half-integer multiples:
+$$
+\Delta r = \left(n + \frac{1}{2}\right)\lambda
+$$</p>
+<h5 id="visualization">Visualization</h5>
+<p>Here is the interference pattern for the triangle:</p>
+<p><img alt="Interference Pattern: Triangle" src="../triangle_only.png"/></p>
+<h5 id="analysis">Analysis</h5>
+<ul>
+<li><strong>Constructive Interference</strong>: In <code>triangle_only.png</code>, the yellow regions (displacement up to 2.64) indicate where the waves add up, such as near the center where the path lengths from all sources are nearly equal.</li>
+<li><strong>Destructive Interference</strong>: Blue regions (displacement down to -2.64) show cancellation, forming a pattern with 3-fold symmetry.</li>
+<li>The pattern resembles a series of concentric nodes and antinodes, with a hexagonal-like structure reflecting the triangular arrangement. Source markers are not present in this image, but the symmetry indicates the sources are at the vertices of an equilateral triangle.</li>
+</ul>
+<h4 id="2-square-4-sources">2. Square (4 Sources)</h4>
+<h5 id="position-the-sources_1">Position the Sources</h5>
+<p>For a square centered at the origin with side length 2:
+- Source 1: <span class="arithmatex">\((1, 1)\)</span>
+- Source 2: <span class="arithmatex">\((1, -1)\)</span>
+- Source 3: <span class="arithmatex">\((-1, -1)\)</span>
+- Source 4: <span class="arithmatex">\((-1, 1)\)</span></p>
+<h5 id="wave-equations_1">Wave Equations</h5>
+<ul>
+<li>Source 1:
+  $$
+  r_1 = \sqrt{(x - 1)^2 + (y - 1)^2}
+  $$
+  $$
+  \eta_1(x, y, t) = A \cos(k r_1 - \omega t)
+  $$</li>
+<li>Source 2:
+  $$
+  r_2 = \sqrt{(x - 1)^2 + (y + 1)^2}
+  $$
+  $$
+  \eta_2(x, y, t) = A \cos(k r_2 - \omega t)
+  $$</li>
+<li>Source 3:
+  $$
+  r_3 = \sqrt{(x + 1)^2 + (y + 1)^2}
+  $$
+  $$
+  \eta_3(x, y, t) = A \cos(k r_3 - \omega t)
+  $$</li>
+<li>Source 4:
+  $$
+  r_4 = \sqrt{(x + 1)^2 + (y - 1)^2}
+  $$
+  $$
+  \eta_4(x, y, t) = A \cos(k r_4 - \omega t)
+  $$</li>
+</ul>
+<h5 id="superposition_1">Superposition</h5>
+<div class="arithmatex">\[
+\eta(x, y, t) = A \left[ \cos(k r_1 - \omega t) + \cos(k r_2 - \omega t) + \cos(k r_3 - \omega t) + \cos(k r_4 - \omega t) \right]
+\]</div>
+<p>Using the same conditions for constructive and destructive interference as above:
+- Constructive: <span class="arithmatex">\(\Delta r = n\lambda\)</span>
+- Destructive: <span class="arithmatex">\(\Delta r = \left(n + \frac{1}{2}\right)\lambda\)</span></p>
+<h5 id="visualization_1">Visualization</h5>
+<p>Here is the interference pattern for the square:</p>
+<p><img alt="Interference Pattern: Square" src="../square_only.png"/></p>
+<h5 id="analysis_1">Analysis</h5>
+<ul>
+<li><strong>Constructive Interference</strong>: In <code>square_only.png</code>, the yellow regions (displacement up to 3.52) indicate where the waves add constructively, particularly at the center and along the axes, where waves from all 4 sources align in phase.</li>
+<li><strong>Destructive Interference</strong>: Blue regions (displacement down to -3.52) show cancellation, forming a grid-like pattern with 4-fold symmetry.</li>
+<li>The pattern shows a clear square symmetry with concentric rings of constructive and destructive interference. Source markers are not present in this image, but the symmetry suggests the sources are at the vertices of a square.</li>
+</ul>
+<h4 id="3-pentagon-5-sources">3. Pentagon (5 Sources)</h4>
+<h5 id="position-the-sources_2">Position the Sources</h5>
+<p>For a regular pentagon centered at the origin with radius 1 (as shown in the previous pentagon image with source markers, where the vertices lie on a unit circle):
+- Vertex 1: <span class="arithmatex">\(( \cos(0^\circ), \sin(0^\circ) ) = (1, 0)\)</span>
+- Vertex 2: <span class="arithmatex">\(( \cos(72^\circ), \sin(72^\circ) ) \approx (0.309, 0.951)\)</span>
+- Vertex 3: <span class="arithmatex">\(( \cos(144^\circ), \sin(144^\circ) ) \approx (-0.809, 0.588)\)</span>
+- Vertex 4: <span class="arithmatex">\(( \cos(216^\circ), \sin(216^\circ) ) \approx (-0.809, -0.588)\)</span>
+- Vertex 5: <span class="arithmatex">\(( \cos(288^\circ), \sin(288^\circ) ) \approx (0.309, -0.951)\)</span></p>
+<h5 id="wave-equations_2">Wave Equations</h5>
+<p>For source <span class="arithmatex">\(i\)</span> at <span class="arithmatex">\((x_i, y_i)\)</span>:
+$$
+r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}
+$$
+$$
+\eta_i(x, y, t) = A \cos(k r_i - \omega t)
+$$</p>
+<h5 id="superposition_2">Superposition</h5>
+<div class="arithmatex">\[
+\eta(x, y, t) = A \sum_{i=1}^5 \cos(k r_i - \omega t)
+\]</div>
+<h5 id="visualization_2">Visualization</h5>
+<p>Here is the interference pattern for the pentagon:</p>
+<p><img alt="Interference Pattern: Pentagon" src="../pentagon_only.png"/></p>
+<h5 id="analysis_2">Analysis</h5>
+<ul>
+<li><strong>Constructive Interference</strong>: In <code>pentagon_only.png</code>, the yellow regions (displacement up to 4) show where the 5 waves add up, particularly at the center where the path lengths from all sources are equal.</li>
+<li><strong>Destructive Interference</strong>: Blue regions (displacement down to -4) form a complex pattern with 5-fold symmetry, reflecting the pentagon’s geometry.</li>
+<li>The pattern shows a star-like symmetry with a dense network of nodes and antinodes due to the 5 sources. Source markers are not present in this image, but the symmetry indicates the sources are at the vertices of a regular pentagon.</li>
+</ul>
+<h4 id="4-hexagon-6-sources">4. Hexagon (6 Sources)</h4>
+<h5 id="position-the-sources_3">Position the Sources</h5>
+<p>For a regular hexagon centered at the origin with radius 1 (as shown in <code>hexagon_only.png</code>, where the vertices lie on a unit circle):
+- Vertex 1: <span class="arithmatex">\(( \cos(0^\circ), \sin(0^\circ) ) = (1, 0)\)</span>
+- Vertex 2: <span class="arithmatex">\(( \cos(60^\circ), \sin(60^\circ) ) = (0.5, 0.866)\)</span>
+- Vertex 3: <span class="arithmatex">\(( \cos(120^\circ), \sin(120^\circ) ) = (-0.5, 0.866)\)</span>
+- Vertex 4: <span class="arithmatex">\(( \cos(180^\circ), \sin(180^\circ) ) = (-1, 0)\)</span>
+- Vertex 5: <span class="arithmatex">\(( \cos(240^\circ), \sin(240^\circ) ) = (-0.5, -0.866)\)</span>
+- Vertex 6: <span class="arithmatex">\(( \cos(300^\circ), \sin(300^\circ) ) = (0.5, -0.866)\)</span></p>
+<h5 id="wave-equations_3">Wave Equations</h5>
+<p>For source <span class="arithmatex">\(i\)</span> at <span class="arithmatex">\((x_i, y_i)\)</span>:
+$$
+r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}
+$$
+$$
+\eta_i(x, y, t) = A \cos(k r_i - \omega t)
+$$</p>
+<h5 id="superposition_3">Superposition</h5>
+<div class="arithmatex">\[
+\eta(x, y, t) = A \sum_{i=1}^6 \cos(k r_i - \omega t)
+\]</div>
+<h5 id="visualization_3">Visualization</h5>
+<p>Here is the interference pattern for the hexagon:</p>
+<p><img alt="Interference Pattern: Hexagon" src="../hexagon_only.png"/></p>
+<h5 id="analysis_3">Analysis</h5>
+<ul>
+<li><strong>Constructive Interference</strong>: In <code>hexagon_only.png</code>, the red regions (displacement up to 4) show where the 6 waves add up, particularly at the center where the path lengths from all sources are equal.</li>
+<li><strong>Destructive Interference</strong>: Blue regions (displacement down to -4) form a complex pattern with 6-fold symmetry, reflecting the hexagon’s geometry.</li>
+<li>The sources are marked with black dots at the vertices, and the pattern shows a highly symmetrical, flower-like structure with a dense network of nodes and antinodes due to the 6 sources. The hexagon’s interference pattern is even more intricate than the pentagon’s, as expected with an additional source.</li>
+</ul>
+<hr/>
+<h3 id="supplementary-formulas-and-concepts">Supplementary Formulas and Concepts</h3>
+<h4 id="principle-of-superposition">Principle of Superposition</h4>
+<p>The total wave displacement at any point is the sum of individual contributions:
+$$
+\eta(x, y, t) = \sum_{i=1}^{N} A \cos(k r_i - \omega t)
+$$</p>
+<p>If all sources are in phase (i.e., <span class="arithmatex">\(\phi_i = 0\)</span>), constructive interference occurs where the path differences are integer multiples of the wavelength:
+$$
+\Delta r = n\lambda, \quad n \in \mathbb{Z}
+$$
+Destructive interference occurs when the path differences are half-integer multiples:
+$$
+\Delta r = \left(n + \frac{1}{2}\right)\lambda
+$$</p>
+<h4 id="example-two-point-sources">Example: Two Point Sources</h4>
+<p>For two sources at <span class="arithmatex">\((x_1, y_1)\)</span> and <span class="arithmatex">\((x_2, y_2)\)</span>, the interference pattern is given by:
+$$
+\eta(x, y, t) = A \cos(k r_1 - \omega t) + A \cos(k r_2 - \omega t)
+$$</p>
+<p>Using the trigonometric identity:
+$$
+\cos a + \cos b = 2 \cos\left(\frac{a + b}{2}\right) \cos\left(\frac{a - b}{2}\right)
+$$</p>
+<p>we get:
+$$
+\eta(x, y, t) = 2A \cos\left(\frac{k(r_1 + r_2)}{2} - \omega t\right) \cos\left(\frac{k(r_1 - r_2)}{2}\right)
+$$</p>
+<p>This shows that the <strong>amplitude envelope</strong> (modulation) is given by:
+$$
+2A \cos\left(\frac{k(r_1 - r_2)}{2}\right)
+$$</p>
+<p>indicating the locations of nodes (destructive) and antinodes (constructive).</p>
+<h4 id="useful-constants">Useful Constants</h4>
+<ul>
+<li>Wave number: <span class="arithmatex">\(k = \frac{2\pi}{\lambda}\)</span></li>
+<li>Angular frequency: <span class="arithmatex">\(\omega = 2\pi f\)</span></li>
+<li>Speed of wave: <span class="arithmatex">\(v = f \lambda\)</span></li>
+</ul>
+<hr/>
+<h3 id="summary-of-observations">Summary of Observations</h3>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Sources</th>
+<th>Max Displacement</th>
+<th>Symmetry</th>
+<th>Pattern Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Triangle</td>
+<td>3</td>
+<td>~2.64</td>
+<td>3-fold</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Square</td>
+<td>4</td>
+<td>~3.52</td>
+<td>4-fold</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Pentagon</td>
+<td>5</td>
+<td>~4.00</td>
+<td>5-fold</td>
+<td>Very High</td>
+</tr>
+<tr>
+<td>Hexagon</td>
+<td>6</td>
+<td>~4.00</td>
+<td>6-fold</td>
+<td>Extremely High</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>More sources</strong> lead to more <strong>intricate interference structures</strong>. The pattern complexity increases from the triangle to the square to the pentagon to the hexagon.</li>
+<li>Each shape produces interference patterns reflecting its <strong>rotational symmetry</strong>: 3-fold for the triangle, 4-fold for the square, 5-fold for the pentagon, and 6-fold for the hexagon.</li>
+<li><strong>Maximum displacement increases</strong> with more sources, though it never reaches <span class="arithmatex">\(N \cdot A\)</span> due to partial cancellations. The triangle reaches a maximum of 2.64 (less than 3), the square reaches 3.52 (less than 4), the pentagon reaches 4.00 (less than 5), and the hexagon also reaches 4.00 (less than 6), indicating that beyond a certain number of sources, the maximum displacement may plateau due to increased interference effects.</li>
+</ul>
+<hr/>
+<h2 id="comparative-analysis">Comparative Analysis</h2>
+<ul>
+<li><strong>Symmetry</strong>: The triangle (3 sources) shows 3-fold symmetry, the square (4 sources) shows 4-fold symmetry, the pentagon (5 sources) shows 5-fold symmetry, and the hexagon (6 sources) shows 6-fold symmetry, as expected from the geometry of the polygons.</li>
+<li><strong>Amplitude</strong>: Maximum displacement generally increases with the number of sources, as seen in the table above. However, the hexagon’s maximum displacement (4.00) is the same as the pentagon’s, suggesting that additional sources beyond 5 may not significantly increase the peak amplitude due to more complex interference effects.</li>
+<li><strong>Pattern Complexity</strong>: The interference pattern becomes more intricate as the number of sources increases. The triangle has a moderate pattern, the square shows a high-complexity grid-like structure, the pentagon’s pattern is very complex with a star-like structure, and the hexagon’s pattern is extremely complex with a flower-like structure and a dense network of nodes and antinodes.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The interference patterns demonstrate the principle of superposition in a visually striking way. Constructive interference creates regions of high amplitude, while destructive interference leads to cancellation. The symmetry of the polygon directly influences the pattern, making this a powerful method to study wave interactions. The addition of the hexagon pattern further illustrates how increasing the number of sources enhances the complexity and symmetry of the interference pattern.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
