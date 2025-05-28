@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Statistics - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Statistics";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,7 +70,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal">4 Electromagnetism</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Simulating the Effects of the Lorentz Force</a>
 </li>
 </ul>
 </li>
@@ -82,11 +82,37 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">6 Statistics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Statistics</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem Through Simulations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">📘 Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-simulating-sampling-distributions">1. Simulating Sampling Distributions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-sampling-and-visualization">2. Sampling and Visualization</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#process">Process:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#visual-demonstrations">📊 Visual Demonstrations</a>
+</li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
+<li class="toctree-l3"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-shape-affects-convergence">🔍 How Shape Affects Convergence</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#how-variance-affects-spread">🔍 How Variance Affects Spread</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-practical-applications">4. Practical Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">✅ Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Problem_2/">🧮 Problem 2: Estimating π Using Monte Carlo Methods</a>
 </li>
 </ul>
 </li>
@@ -111,7 +137,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Statistics</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,12 +145,89 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="statistics">Statistics</h1>
+<h2 id="problem-1-exploring-the-central-limit-theorem-through-simulations">Problem 1: Exploring the Central Limit Theorem Through Simulations</h2>
+<hr/>
+<h2 id="motivation">📘 Motivation</h2>
+<p>The <strong>Central Limit Theorem (CLT)</strong> is a foundational principle in statistics. It states:</p>
+<blockquote>
+<p>The sampling distribution of the sample mean becomes approximately normal as the sample size increases, <strong>regardless of the shape of the original population distribution</strong>.</p>
+</blockquote>
+<p>This powerful result explains why normal distributions appear so frequently in statistical practice and underpins many real-world applications—from quality control to financial forecasting.</p>
+<p>Using simulations, we can explore the CLT's behavior across various population distributions and sample sizes.</p>
+<hr/>
+<h2 id="1-simulating-sampling-distributions">1. Simulating Sampling Distributions</h2>
+<p>We begin by generating populations using several different distributions:</p>
+<ul>
+<li><strong>Uniform Distribution</strong></li>
+<li><strong>Exponential Distribution</strong></li>
+<li><strong>Binomial Distribution</strong></li>
+</ul>
+<p>Each population contains a large number of observations (e.g., 100,000 values) to approximate a true distribution.</p>
+<hr/>
+<h2 id="2-sampling-and-visualization">2. Sampling and Visualization</h2>
+<p>To visualize the CLT, we repeatedly draw samples of various sizes and calculate their means.</p>
+<h3 id="process">Process:</h3>
+<ul>
+<li>Choose sample sizes: <code>n = 5, 10, 30, 50</code></li>
+<li>Draw 1000 samples for each <code>n</code></li>
+<li>Compute the sample means</li>
+<li>Plot histograms of those means</li>
+</ul>
+<hr/>
+<h3 id="visual-demonstrations">📊 Visual Demonstrations</h3>
+<h4 id="uniform-distribution">Uniform Distribution</h4>
+<ul>
+<li><img alt="Uniform n=5" src="../uniform_n5.png"/></li>
+<li><img alt="Uniform n=10" src="../uniform_n10.png"/></li>
+<li><img alt="Uniform n=30" src="../uniform_n30.png"/></li>
+<li><img alt="Uniform n=50" src="../uniform_n50.png"/></li>
+</ul>
+<h4 id="exponential-distribution">Exponential Distribution</h4>
+<ul>
+<li><img alt="Exponential n=5" src="../exponential_n5.png"/></li>
+<li><img alt="Exponential n=10" src="../exponential_n10.png"/></li>
+<li><img alt="Exponential n=30" src="../exponential_n30.png"/></li>
+<li><img alt="Exponential n=50" src="../exponential_n50.png"/></li>
+</ul>
+<h4 id="binomial-distribution">Binomial Distribution</h4>
+<ul>
+<li><img alt="Binomial n=5" src="../binomial_n5.png"/></li>
+<li><img alt="Binomial n=10" src="../binomial_n10.png"/></li>
+<li><img alt="Binomial n=30" src="../binomial_n30.png"/></li>
+<li><img alt="Binomial n=50" src="../binomial_n50.png"/></li>
+</ul>
+<hr/>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<h3 id="how-shape-affects-convergence">🔍 How Shape Affects Convergence</h3>
+<ul>
+<li><strong>Uniform</strong>: Symmetric → fast convergence</li>
+<li><strong>Exponential</strong>: Skewed → slower convergence</li>
+<li><strong>Binomial</strong>: Convergence depends on <code>n</code> and <code>p</code></li>
+</ul>
+<h3 id="how-variance-affects-spread">🔍 How Variance Affects Spread</h3>
+<div class="arithmatex">\[
+\text{Var}(\bar{X}) = \frac{\sigma^2}{n}
+\]</div>
+<p>As <code>n</code> increases:
+- Variance of the sample mean decreases
+- The distribution becomes narrower and more normal</p>
+<hr/>
+<h2 id="4-practical-applications">4. Practical Applications</h2>
+<ul>
+<li><strong>Estimation</strong>: Sample mean approximates population mean</li>
+<li><strong>Quality Control</strong>: Monitor production processes</li>
+<li><strong>Finance</strong>: Risk estimation and portfolio analysis</li>
+<li><strong>A/B Testing</strong>: Business and tech experiments</li>
+</ul>
+<hr/>
+<h2 id="conclusion">✅ Conclusion</h2>
+<p>Simulating the Central Limit Theorem helps solidify intuition about sampling distributions and why the normal distribution arises so frequently in practice. Regardless of the source population's shape, the sample mean behaves predictably with large <code>n</code>.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
 <a class="btn btn-neutral float-left" href="../../5%20Circuits/Problem_1/" title="Problem 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../Problem_2/" title="Problem 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-right" href="../Problem_2/" title="🧮 Problem 2: Estimating π Using Monte Carlo Methods">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">

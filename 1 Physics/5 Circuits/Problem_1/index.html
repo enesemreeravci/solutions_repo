@@ -70,7 +70,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal">4 Electromagnetism</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../4%20Electromagnetism/Problem_1/">Simulating the Effects of the Lorentz Force</a>
 </li>
 </ul>
 </li>
@@ -84,9 +84,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal">6 Statistics</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_1/">Statistics</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_2/">Problem 2</a>
+<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_2/">🧮 Problem 2: Estimating π Using Monte Carlo Methods</a>
 </li>
 </ul>
 </li>
@@ -119,12 +119,126 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h2 id="problem-1">Problem 1</h2>
+<h1 id="equivalent-resistance-using-graph-theory">Equivalent Resistance Using Graph Theory</h1>
+<h2 id="motivation">Motivation</h2>
+<p>Calculating equivalent resistance is a fundamental problem in electrical circuits, essential for understanding and designing efficient systems. While traditional methods involve iteratively applying series and parallel resistor rules, these approaches can become cumbersome for complex circuits with many components.</p>
+<p><strong>Graph theory</strong> offers a powerful and algorithmic alternative:
+- <strong>Nodes</strong> represent junctions.
+- <strong>Edges</strong> represent resistors, with weights corresponding to resistance values.</p>
+<p>This structured representation enables automated analysis and efficient simplification of electrical networks, making it highly relevant for modern simulation tools, optimization systems, and circuit design.</p>
+<hr/>
+<h2 id="1-applications-of-graph-based-circuit-modeling">1. Applications of Graph-Based Circuit Modeling</h2>
+<p>Graph theory-based resistance modeling is used in:</p>
+<ul>
+<li><strong>Circuit Simulation Software</strong> (e.g., SPICE): Efficient simplification and analysis.</li>
+<li><strong>Electrical Grid Design</strong>: Reducing the number of components or calculating losses.</li>
+<li><strong>Optimization Algorithms</strong>: Finding minimum-resistance paths or optimal topologies.</li>
+<li><strong>Robustness Testing</strong>: Analyzing failure points and backup paths.</li>
+</ul>
+<hr/>
+<h2 id="2-task-options">2. Task Options</h2>
+<h3 id="option-1-algorithm-description-simplified-task">Option 1: Algorithm Description (Simplified Task)</h3>
+<p>We develop a <strong>step-by-step algorithm</strong> for calculating equivalent resistance using iterative graph reduction.</p>
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+<li><strong>Series Configuration</strong>: A node with exactly two neighbors (degree 2) and no connection to source/target.</li>
+<li><strong>Parallel Configuration</strong>: Multiple edges connecting the same pair of nodes.</li>
+</ul>
+<h3 id="pseudocode">Pseudocode:</h3>
+<pre><code class="language-plaintext">function simplify_graph(G, source, target):
+    repeat
+        for each node in G:
+            if node has degree 2 and is not source or target:
+                combine series edges into one
+                remove node
+        for each pair of connected nodes (u, v):
+            if multiple edges exist:
+                combine them into one edge with:
+                    1 / R_eq = sum(1 / R_i)
+    until G has only source and target
+    return resistance between source and target
+</code></pre>
+<p>This algorithm detects and reduces nested combinations by recursively applying local transformations.</p>
+<hr/>
+<h2 id="3-full-implementation-advanced-task">3. Full Implementation (Advanced Task)</h2>
+<p>Using Python and the <code>networkx</code> library:</p>
+<pre><code class="language-python">import networkx as nx
+
+def merge_series(G, node):
+    neighbors = list(G.neighbors(node))
+    if len(neighbors) != 2:
+        return
+    u, v = neighbors
+    R1 = G[u][node]['weight']
+    R2 = G[node][v]['weight']
+    G.add_edge(u, v, weight=R1 + R2)
+    G.remove_node(node)
+
+def merge_parallel(G):
+    seen = set()
+    for u, v in list(G.edges()):
+        if (u, v) in seen or (v, u) in seen:
+            continue
+        edges = [d['weight'] for x, y, d in G.edges(data=True) if {x, y} == {u, v}]
+        if len(edges) &gt; 1:
+            Req = 1 / sum(1 / R for R in edges)
+            G.remove_edges_from([(x, y) for x, y, d in G.edges(data=True) if {x, y} == {u, v}])
+            G.add_edge(u, v, weight=Req)
+        seen.add((u, v))
+
+def simplify(G, source, target):
+    while len(G.nodes) &gt; 2:
+        for node in list(G.nodes):
+            if G.degree[node] == 2 and node not in (source, target):
+                merge_series(G, node)
+        merge_parallel(G)
+    return G[source][target]['weight']
+</code></pre>
+<hr/>
+<h2 id="4-examples-and-visuals">4. Examples and Visuals</h2>
+<h3 id="a-series-combination">A. Series Combination</h3>
+<p><strong>Circuit:</strong> A — 5Ω — B — 10Ω — C<br/>
+<strong>Result:</strong><br/>
+<span class="arithmatex">\(R_{eq} = 5 + 10 = 15\ \Omega\)</span><br/>
+<img alt="Series" src="../series.png"/></p>
+<hr/>
+<h3 id="b-parallel-combination">B. Parallel Combination</h3>
+<p><strong>Circuit:</strong><br/>
+A — 5Ω — B<br/>
+A — 10Ω — B<br/>
+<strong>Result:</strong><br/>
+<span class="arithmatex">\(R_{eq} = \left( \frac{1}{5} + \frac{1}{10} \right)^{-1} = \frac{10}{3} \approx 3.33\ \Omega\)</span><br/>
+<img alt="Parallel" src="../parallel.png"/></p>
+<hr/>
+<h3 id="c-nested-combination-triangle">C. Nested Combination (Triangle)</h3>
+<p><strong>Circuit:</strong><br/>
+- AB = 4Ω, BC = 6Ω, AC = 12Ω<br/>
+- AB + BC = 10Ω in parallel with AC<br/>
+<strong>Result:</strong><br/>
+<span class="arithmatex">\(R_{eq} = \left( \frac{1}{10} + \frac{1}{12} \right)^{-1} = \frac{60}{11} \approx 5.45\ \Omega\)</span><br/>
+<img alt="Triangle" src="../triangle.png"/></p>
+<hr/>
+<h2 id="5-efficiency-improvements">5. Efficiency &amp; Improvements</h2>
+<h3 id="complexity">Complexity:</h3>
+<ul>
+<li>Each simplification step is linear with respect to nodes/edges.</li>
+<li>Multiple passes reduce the graph to a 2-node form.</li>
+</ul>
+<h3 id="enhancements">Enhancements:</h3>
+<ul>
+<li>Handle <strong>Y-Δ (star-delta)</strong> transformations.</li>
+<li>Allow <strong>AC impedance</strong> calculations.</li>
+<li>Integrate with symbolic algebra systems (e.g., SymPy).</li>
+</ul>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<p>Using graph theory to compute equivalent resistance is a scalable, powerful method suited for manual and automated analysis. Python implementation makes this approach practical for engineers and students alike.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../../4%20Electromagnetism/Problem_1/" title="Problem 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../../6%20Statistics/Problem_1/" title="Problem 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-left" href="../../4%20Electromagnetism/Problem_1/" title="Simulating the Effects of the Lorentz Force"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../../6%20Statistics/Problem_1/" title="Statistics">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">

@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Simulating the Effects of the Lorentz Force - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Simulating the Effects of the Lorentz Force";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,8 +70,38 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Simulating the Effects of the Lorentz Force</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1-applications-of-the-lorentz-force">1. Applications of the Lorentz Force</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#systems-where-it-plays-a-key-role">Systems Where It Plays a Key Role:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-simulating-particle-motion">2. Simulating Particle Motion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#numerical-method">Numerical Method</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#tools-used">Tools Used:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#scenario-1-helical-motion-vecb-neq-0-vece-0">Scenario 1: Helical Motion (\(\vec{B} \neq 0, \vec{E} = 0\))</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#visualization">Visualization:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#scenario-2-crossed-fields-vece-perp-vecb">Scenario 2: Crossed Fields (\(\vec{E} \perp \vec{B}\))</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#visualization_1">Visualization:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-parameter-exploration">3. Parameter Exploration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-real-world-applications">4. Real-World Applications</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -84,9 +114,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal">6 Statistics</a>
 <ul>
-<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_1/">Problem 1</a>
+<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_1/">Statistics</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_2/">Problem 2</a>
+<li class="toctree-l2"><a class="reference internal" href="../../6%20Statistics/Problem_2/">🧮 Problem 2: Estimating π Using Monte Carlo Methods</a>
 </li>
 </ul>
 </li>
@@ -111,7 +141,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Simulating the Effects of the Lorentz Force</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +149,97 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>Lorentz force</strong>, described by the equation:</p>
+<p><span class="arithmatex">\(\vec{F} = q\vec{E} + q\vec{v} \times \vec{B}\)</span></p>
+<p>is a foundational concept in electromagnetism. It governs the motion of charged particles in electric and magnetic fields and is widely applied in fields such as:</p>
+<ul>
+<li>Plasma physics</li>
+<li>Particle accelerators</li>
+<li>Mass spectrometry</li>
+<li>Astrophysics</li>
+</ul>
+<p>Understanding this force provides insight into how we manipulate particles in experimental physics and industrial applications. This document presents an exploration and simulation of particle motion under various field configurations using Python.</p>
+<hr/>
+<h2 id="1-applications-of-the-lorentz-force">1. Applications of the Lorentz Force</h2>
+<h3 id="systems-where-it-plays-a-key-role">Systems Where It Plays a Key Role:</h3>
+<ul>
+<li>
+<p><strong>Particle Accelerators</strong>: Charged particles are bent using magnetic fields to increase energy. The Lorentz force is used to steer particles around circular paths.</p>
+</li>
+<li>
+<p><strong>Mass Spectrometers</strong>: Use electric and magnetic fields to filter particles by mass-to-charge ratio. The trajectory of particles reveals their identity based on how the force affects their paths.</p>
+</li>
+<li>
+<p><strong>Plasma Confinement</strong>: Magnetic fields trap particles in fusion reactors. Lorentz force maintains the confinement of high-temperature plasma.</p>
+</li>
+<li>
+<p><strong>Electric Field (<span class="arithmatex">\(\vec{E}\)</span>)</strong>: Accelerates particles, changing their speed and direction.</p>
+</li>
+<li>
+<p><strong>Magnetic Field (<span class="arithmatex">\(\vec{B}\)</span>)</strong>: Bends particle path, alters direction but keeps speed constant when no electric field is present.</p>
+</li>
+</ul>
+<hr/>
+<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
+<h3 id="numerical-method">Numerical Method</h3>
+<p>We use the <strong>Runge-Kutta method</strong> to integrate Newton's second law:</p>
+<p><span class="arithmatex">\(\vec{F} = m\vec{a} = q(\vec{E} + \vec{v} \times \vec{B})\)</span></p>
+<p>This approach is stable and accurate for solving differential equations governing motion.</p>
+<h3 id="tools-used">Tools Used:</h3>
+<ul>
+<li><code>NumPy</code> for vector math</li>
+<li><code>Matplotlib</code> for 2D/3D visualizations</li>
+</ul>
+<h3 id="scenario-1-helical-motion-vecb-neq-0-vece-0">Scenario 1: Helical Motion (<span class="arithmatex">\(\vec{B} \neq 0, \vec{E} = 0\)</span>)</h3>
+<pre><code class="language-python"># Magnetic field in z-direction
+B = np.array([0, 0, 1.0])
+E = np.array([0, 0, 0])
+v0 = np.array([1.0, 0.0, 1.0])
+</code></pre>
+<p>The trajectory shows a helical path due to the combined perpendicular and parallel velocity components with respect to <span class="arithmatex">\(\vec{B}\)</span>.</p>
+<h3 id="visualization">Visualization:</h3>
+<p><img alt="Helical Motion" src="../graph2elec.png"/></p>
+<hr/>
+<h3 id="scenario-2-crossed-fields-vece-perp-vecb">Scenario 2: Crossed Fields (<span class="arithmatex">\(\vec{E} \perp \vec{B}\)</span>)</h3>
+<pre><code class="language-python"># Electric field in x, magnetic field in z
+E = np.array([1.0, 0.0, 0.0])
+B = np.array([0.0, 0.0, 1.0])
+v0 = np.array([0.0, 1.0, 0.0])
+</code></pre>
+<p>This setup results in a spiral drift motion due to the <span class="arithmatex">\(\vec{E} \times \vec{B}\)</span> drift effect. The particle gains a net drift velocity perpendicular to both fields.</p>
+<h3 id="visualization_1">Visualization:</h3>
+<p><strong>3D Path:</strong></p>
+<p><img alt="Drift Motion 3D" src="../graph1elec.png"/></p>
+<p><strong>2D Projection on XY Plane:</strong></p>
+<p><img alt="Drift Motion 2D" src="../graph4elec.png"/></p>
+<hr/>
+<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
+<p>Users can vary:</p>
+<ul>
+<li>Field strengths: <span class="arithmatex">\(E, B\)</span></li>
+<li>Initial velocity <span class="arithmatex">\(\vec{v}_0\)</span></li>
+<li>Charge <span class="arithmatex">\(q\)</span> and mass <span class="arithmatex">\(m\)</span></li>
+</ul>
+<p>This allows simulation of different particles (e.g., electrons, protons) and field configurations. Users can also observe changes in trajectory shape, drift direction, and radius of curvature.</p>
+<hr/>
+<h2 id="4-real-world-applications">4. Real-World Applications</h2>
+<ul>
+<li><strong>Cyclotron Radius</strong>: <span class="arithmatex">\(r = \frac{mv_\perp}{qB}\)</span></li>
+<li><strong>Drift Velocity</strong>: <span class="arithmatex">\(\vec{v}_d = \frac{\vec{E} \times \vec{B}}{B^2}\)</span></li>
+</ul>
+<p>These concepts are key in designing cyclotrons, spectrometers, and plasma traps. For instance, the cyclotron radius determines how tightly a particle orbits in a magnetic field—a crucial factor in containment strategies for nuclear fusion.</p>
+<hr/>
+<h2 id="conclusion">Conclusion</h2>
+<p>This simulation-based study helps visualize the abstract concepts of electromagnetism and is a stepping stone toward building simulations of real-world systems involving charged particles. Further extensions can include:</p>
+<ul>
+<li>Simulations with <strong>non-uniform fields</strong> (e.g., magnetic mirrors)</li>
+<li>Effects of <strong>collisions</strong> in a plasma</li>
+<li><strong>Relativistic corrections</strong> for high-speed particles</li>
+<li>Adding <strong>time-dependent fields</strong> to study resonance effects</li>
+</ul>
+<p>These extensions would enrich the model and make it applicable to cutting-edge research in physics and engineering.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
