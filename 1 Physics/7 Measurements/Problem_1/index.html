@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Measuring Earth's Gravitational Acceleration with a Pendulum - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Measuring Earth\u0027s Gravitational Acceleration with a Pendulum";
         var mkdocs_page_input_path = "1 Physics/7 Measurements/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -90,8 +90,64 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">7 Measurements</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Measuring Earth's Gravitational Acceleration with a Pendulum</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">📘 Theoretical Background</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-setup">🧪 Experimental Setup</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#materials">Materials</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#setup-steps">Setup Steps</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#measurement-procedure">📏 Measurement Procedure</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#length">Length</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#period-measurement">Period Measurement</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#calculations">Calculations</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualizations">📊 Visualizations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#period-vs-length">Period vs. Length</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#period-vs-amplitude">Period vs. Amplitude</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-analysis">Motion Analysis</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#swing-time-by-length">Swing Time by Length</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#angular-displacement-over-time">Angular Displacement Over Time</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#error-analysis">📉 Error Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#systematic-errors">Systematic Errors:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#random-errors">Random Errors:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#quantitative-summary">Quantitative Summary</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-with-standard">🧮 Comparison with Standard</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#improvements-extensions">🔧 Improvements &amp; Extensions</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#suggested-improvements">Suggested Improvements:</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#experimental-extensions">Experimental Extensions:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">📌 Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +167,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">7 Measurements</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Measuring Earth's Gravitational Acceleration with a Pendulum</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +175,187 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
+<h2 id="theoretical-background">📘 Theoretical Background</h2>
+<p>The acceleration due to gravity <span class="arithmatex">\(g\)</span> is a fundamental physical constant that varies slightly across Earth's surface due to latitude, altitude, and geological structure. A <strong>simple pendulum</strong> provides an elegant and accessible method for measuring this constant.</p>
+<p>For small angular displacements (<span class="arithmatex">\(&lt;15^\circ\)</span>), the period <span class="arithmatex">\(T\)</span> of a simple pendulum is related to its length <span class="arithmatex">\(L\)</span> and the gravitational acceleration <span class="arithmatex">\(g\)</span> as:</p>
+<div class="arithmatex">\[
+T = 2\pi\sqrt{\frac{L}{g}} \quad \Rightarrow \quad g = 4\pi^2 \frac{L}{T^2}
+\]</div>
+<hr/>
+<h2 id="experimental-setup">🧪 Experimental Setup</h2>
+<h3 id="materials">Materials</h3>
+<ul>
+<li>1–1.5 m string</li>
+<li>Metal bob (e.g., keychain or coin bag)</li>
+<li>Ruler or tape measure (1 mm resolution)</li>
+<li>Stopwatch or smartphone timer (0.01 s resolution)</li>
+<li>Fixed support (e.g., rod or frame)</li>
+</ul>
+<h3 id="setup-steps">Setup Steps</h3>
+<ol>
+<li>Secure the string to the support.</li>
+<li>Tie the bob to the other end.</li>
+<li>Measure the pendulum length <span class="arithmatex">\(L\)</span>, from the support to the center of the bob.</li>
+<li>Ensure clear swing path and small angle displacement (&lt;15°).</li>
+</ol>
+<p>📷 <strong>Visual Reference:</strong></p>
+<p><img alt="Pendulum Motion Summary" src="attachment\:file-8EnVQ6wgL3f81UrxDzqL4r"/></p>
+<hr/>
+<h2 id="measurement-procedure">📏 Measurement Procedure</h2>
+<h3 id="length">Length</h3>
+<ul>
+<li>Measure <span class="arithmatex">\(L = 1.000 \, \text{m}\)</span></li>
+<li>Ruler resolution = 1 mm → <span class="arithmatex">\(\Delta L = 0.0005 \, \text{m}\)</span></li>
+</ul>
+<h3 id="period-measurement">Period Measurement</h3>
+<ul>
+<li>Displace &lt;15° and release.</li>
+<li>Time 10 oscillations → repeat 10 times.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Trial</th>
+<th>Time for 10 oscillations (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>20.12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20.08</td>
+</tr>
+<tr>
+<td>3</td>
+<td>20.15</td>
+</tr>
+<tr>
+<td>4</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td>5</td>
+<td>20.13</td>
+</tr>
+<tr>
+<td>6</td>
+<td>20.09</td>
+</tr>
+<tr>
+<td>7</td>
+<td>20.11</td>
+</tr>
+<tr>
+<td>8</td>
+<td>20.14</td>
+</tr>
+<tr>
+<td>9</td>
+<td>20.07</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20.11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="calculations">Calculations</h3>
+<div class="arithmatex">\[
+\overline{T_{10}} = 20.11 \, \text{s}, \quad \sigma_T = 0.0258 \, \text{s}, \quad \Delta T_{10} = 0.0082 \, \text{s}
+\]</div>
+<div class="arithmatex">\[
+T = \frac{\overline{T_{10}}}{10} = 2.011 \, \text{s}, \quad \Delta T = 0.00082 \, \text{s}
+\]</div>
+<div class="arithmatex">\[
+g = 4\pi^2 \frac{1.000}{2.011^2} = 9.77 \, \text{m/s}^2
+\]</div>
+<div class="arithmatex">\[
+\Delta g = g\sqrt{\left(\frac{0.0005}{1.000}\right)^2 + \left(2\frac{0.00082}{2.011}\right)^2} = 0.0096 \, \text{m/s}^2
+\]</div>
+<p>✅ <strong>Final Result:</strong></p>
+<div class="arithmatex">\[
+g = (9.77 \pm 0.01)\, \text{m/s}^2
+\]</div>
+<hr/>
+<h2 id="visualizations">📊 Visualizations</h2>
+<h3 id="period-vs-length">Period vs. Length</h3>
+<p><img alt="Pendulum Period vs Length" src="periodvslength.jpg"/></p>
+<p><em>Confirms theoretical relationship <span class="arithmatex">\(T^2 \propto L\)</span></em></p>
+<hr/>
+<h3 id="period-vs-amplitude">Period vs. Amplitude</h3>
+<p><img alt="Amplitude vs Period" src="../pic2.png"/></p>
+<p><em>Shows increase in period with amplitude beyond small angle approximation</em></p>
+<hr/>
+<h3 id="motion-analysis">Motion Analysis</h3>
+<p><img alt="Displacement and Kinetic Energy Graphs" src="../pic4.png"/></p>
+<hr/>
+<h3 id="swing-time-by-length">Swing Time by Length</h3>
+<p><img alt="Swing Time vs Length" src="../pic1.jpg"/></p>
+<hr/>
+<h3 id="angular-displacement-over-time">Angular Displacement Over Time</h3>
+<p><img alt="Angular Position vs Time" src="../pic3.jpeg"/></p>
+<hr/>
+<h2 id="error-analysis">📉 Error Analysis</h2>
+<h3 id="systematic-errors">Systematic Errors:</h3>
+<ul>
+<li>Center of mass hard to locate</li>
+<li>Air resistance on lighter bobs</li>
+<li>Slightly elastic string</li>
+<li>Angle &gt;15° affects model</li>
+</ul>
+<h3 id="random-errors">Random Errors:</h3>
+<ul>
+<li>Reaction time in stopwatch</li>
+<li>Miscounting oscillations</li>
+<li>Inconsistent release angles</li>
+</ul>
+<h3 id="quantitative-summary">Quantitative Summary</h3>
+<ul>
+<li><span class="arithmatex">\(\Delta L\)</span> contributes \~0.05% error in <span class="arithmatex">\(g\)</span></li>
+<li><span class="arithmatex">\(\Delta T\)</span> contributes \~0.08%</li>
+<li>15° angle introduces \~0.4% theoretical deviation</li>
+</ul>
+<hr/>
+<h2 id="comparison-with-standard">🧮 Comparison with Standard</h2>
+<ul>
+<li>Standard <span class="arithmatex">\(g = 9.81 \, \text{m/s}^2\)</span></li>
+<li>Measured <span class="arithmatex">\(g = 9.77 \pm 0.01 \, \text{m/s}^2\)</span></li>
+<li>Deviation = 0.4% (likely from systematic errors)</li>
+</ul>
+<hr/>
+<h2 id="improvements-extensions">🔧 Improvements &amp; Extensions</h2>
+<h3 id="suggested-improvements">Suggested Improvements:</h3>
+<ol>
+<li>Use photogate timing</li>
+<li>More precise ruler or digital sensor</li>
+<li>Increase bob mass</li>
+<li>Keep angle &lt;5°</li>
+<li>Measure to the center of oscillation</li>
+</ol>
+<h3 id="experimental-extensions">Experimental Extensions:</h3>
+<ol>
+<li>Vary bob mass (check independence)</li>
+<li>Measure period at different amplitudes</li>
+<li>Compare <span class="arithmatex">\(g\)</span> at different altitudes</li>
+<li>Analyze physical pendulum behavior</li>
+</ol>
+<hr/>
+<h2 id="conclusion">📌 Conclusion</h2>
+<p>This experiment highlights how a simple pendulum allows us to accurately estimate gravitational acceleration and appreciate:</p>
+<ul>
+<li>The connection between theory and experimental practice</li>
+<li>The effect of uncertainty and measurement errors</li>
+<li>The elegance of classical mechanics</li>
+</ul>
+<p>Through systematic observation, we measured:</p>
+<div class="arithmatex">\[
+\boxed{g = (9.77 \pm 0.01)\, \text{m/s}^2}
+\]</div>
+<p>Despite minor systematic deviations, our result aligns closely with the known standard, proving the effectiveness of simple yet powerful physical experimentation.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
