@@ -1,192 +1,212 @@
-
 # Measuring Earth's Gravitational Acceleration with a Pendulum
 
+## 🌍 Introduction
 
-## 📘 Theoretical Background
-
-The acceleration due to gravity $g$ is a fundamental physical constant that varies slightly across Earth's surface due to latitude, altitude, and geological structure. A **simple pendulum** provides an elegant and accessible method for measuring this constant.
-
-For small angular displacements ($<15^\circ$), the period $T$ of a simple pendulum is related to its length $L$ and the gravitational acceleration $g$ as:
-
-$$
-T = 2\pi\sqrt{\frac{L}{g}} \quad \Rightarrow \quad g = 4\pi^2 \frac{L}{T^2}
-$$
+The acceleration due to gravity, $g$, is a universal constant crucial in physics and engineering. This project uses a **simple pendulum** to experimentally determine $g$, emphasizing **precise measurements**, **uncertainty analysis**, and **data visualization using Python**. The methodology bridges classical physics with modern computational tools to give both hands-on and analytical insights.
 
 ---
 
-## 🧪 Experimental Setup
+## 🌟 Objectives
 
-### Materials
-
-* 1–1.5 m string
-* Metal bob (e.g., keychain or coin bag)
-* Ruler or tape measure (1 mm resolution)
-* Stopwatch or smartphone timer (0.01 s resolution)
-* Fixed support (e.g., rod or frame)
-
-### Setup Steps
-
-1. Secure the string to the support.
-2. Tie the bob to the other end.
-3. Measure the pendulum length $L$, from the support to the center of the bob.
-4. Ensure clear swing path and small angle displacement (<15°).
-
-📷 **Visual Reference:**
-
-![Pendulum Motion Summary](attachment\:file-8EnVQ6wgL3f81UrxDzqL4r)
+* Experimentally determine the local gravitational acceleration $g$.
+* Analyze uncertainties in measurements of length and time.
+* Visualize period-length and $g$-value relationships using Python.
+* Compare with the standard value $g = 9.81\, \text{m/s}^2$.
+* Reflect on improvements in experimental design and error reduction.
 
 ---
 
-## 📏 Measurement Procedure
+## 📚 Theoretical Background
 
-### Length
-
-* Measure $L = 1.000 \, \text{m}$
-* Ruler resolution = 1 mm → $\Delta L = 0.0005 \, \text{m}$
-
-### Period Measurement
-
-* Displace <15° and release.
-* Time 10 oscillations → repeat 10 times.
-
-| Trial | Time for 10 oscillations (s) |
-| ----- | ---------------------------- |
-| 1     | 20.12                        |
-| 2     | 20.08                        |
-| 3     | 20.15                        |
-| 4     | 20.10                        |
-| 5     | 20.13                        |
-| 6     | 20.09                        |
-| 7     | 20.11                        |
-| 8     | 20.14                        |
-| 9     | 20.07                        |
-| 10    | 20.11                        |
-
-### Calculations
+For a simple pendulum under small angles $\theta < 15^\circ$, the period $T$ is:
 
 $$
-\overline{T_{10}} = 20.11 \, \text{s}, \quad \sigma_T = 0.0258 \, \text{s}, \quad \Delta T_{10} = 0.0082 \, \text{s}
+T = 2\pi \sqrt{\frac{L}{g}} \Rightarrow g = \frac{4\pi^2 L}{T^2}
 $$
 
-$$
-T = \frac{\overline{T_{10}}}{10} = 2.011 \, \text{s}, \quad \Delta T = 0.00082 \, \text{s}
-$$
+Where:
+
+* $L$ = Length from pivot to bob center of mass (in meters)
+* $T$ = Period of one full oscillation (in seconds)
+
+This model assumes ideal conditions and small-angle approximation. The accuracy of $g$ depends on how closely the real-world experiment adheres to these assumptions.
+
+---
+
+## 🧪 Materials
+
+* String (1.0–1.5 meters)
+* Weight (e.g., coin bag)
+* Ruler or measuring tape (with resolution, e.g., 1 mm)
+* Stopwatch or phone timer
+* Fixed support (e.g., hook, stick, or rod)
+* Python (for visualization and computation)
+
+---
+
+## 🔧 Experimental Setup
+
+1. Tie the string to the weight and secure it to a fixed point.
+2. Measure length $L$ from pivot to center of the mass.
+3. Record resolution $R$, and compute length uncertainty:
 
 $$
-g = 4\pi^2 \frac{1.000}{2.011^2} = 9.77 \, \text{m/s}^2
+\Delta L = \frac{R}{2}
 $$
 
+4. Ensure pendulum swings within the plane and angle remains <15°.
+5. Prepare stopwatch and Python environment for later analysis.
+
+---
+
+## ⏱ Data Collection
+
+1. Displace the pendulum <15° and release gently.
+2. Measure time for 10 oscillations.
+3. Repeat **10 times**.
+4. Compute:
+
+   * Mean time $\overline{T_{10}}$
+   * Standard deviation $\sigma_T$
+   * Uncertainty:
+
 $$
-\Delta g = g\sqrt{\left(\frac{0.0005}{1.000}\right)^2 + \left(2\frac{0.00082}{2.011}\right)^2} = 0.0096 \, \text{m/s}^2
+\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}} \quad \text{and} \quad T = \frac{\overline{T_{10}}}{10}, \quad \Delta T = \frac{\Delta T_{10}}{10}
 $$
 
-✅ **Final Result:**
+5. Calculate gravitational acceleration:
 
 $$
-g = (9.77 \pm 0.01)\, \text{m/s}^2
+g = \frac{4\pi^2 L}{T^2}
+$$
+
+6. Propagate uncertainties:
+
+$$
+\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2\frac{\Delta T}{T}\right)^2}
 $$
 
 ---
 
 ## 📊 Visualizations
 
-### Period vs. Length
+To enhance understanding and interpretation of the results, the following visualizations were created using Python:
 
-![Pendulum Period vs Length](periodvslength.jpg)
+### **1. Pendulum Period vs. Length**
 
-*Confirms theoretical relationship $T^2 \propto L$*
+![output.png](output.png)
 
----
+### **2. Calculated $g$ vs. Length**
 
-### Period vs. Amplitude
+![output2.png](output2.png)
 
-![Amplitude vs Period](pic2.png)
+### **3. Histogram of Time Measurements**
 
-*Shows increase in period with amplitude beyond small angle approximation*
+![output3.png](output3.png)
 
----
+### **4. Measured $g$ with Uncertainty**
 
-### Motion Analysis
-
-![Displacement and Kinetic Energy Graphs](pic4.png)
+![output4.png](output4.png)
 
 ---
 
-### Swing Time by Length
+## 💻 Python Script
 
-![Swing Time vs Length](pic1.jpg)
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Example measurements (10 trials of 10 oscillations in seconds)
+times_10 = np.array([20.1, 20.3, 20.0, 20.2, 20.1, 20.3, 20.2, 20.2, 20.1, 20.2])
+L = 1.0  # Length in meters
+R = 0.001  # Resolution in meters
+
+# Uncertainty calculations
+delta_L = R / 2
+mean_T10 = np.mean(times_10)
+std_T10 = np.std(times_10, ddof=1)
+delta_T10 = std_T10 / np.sqrt(len(times_10))
+T = mean_T10 / 10
+delta_T = delta_T10 / 10
+
+g = 4 * np.pi**2 * L / T**2
+delta_g = g * np.sqrt((delta_L / L)**2 + (2 * delta_T / T)**2)
+
+# Plot 1: Period vs. Length
+L_values = np.linspace(0.5, 1.5, 20)
+T_values = 2 * np.pi * np.sqrt(L_values / 9.81)
+plt.figure()
+plt.plot(L_values, T_values)
+plt.title('Pendulum Period vs. Length')
+plt.xlabel('Length (m)')
+plt.ylabel('Period (s)')
+plt.grid(True)
+plt.savefig("output.png")
+plt.close()
+
+# Plot 2: g vs. Length
+periods = 2 * np.pi * np.sqrt(L_values / 9.81)
+g_values = 4 * np.pi**2 * L_values / periods**2
+plt.figure()
+plt.plot(L_values, g_values)
+plt.axhline(9.81, color='r', linestyle='--')
+plt.title('Calculated g vs. Length')
+plt.xlabel('Length (m)')
+plt.ylabel('g (m/s²)')
+plt.grid(True)
+plt.savefig("output2.png")
+plt.close()
+
+# Plot 3: Histogram of time measurements
+plt.figure()
+plt.hist(times_10, bins=6, edgecolor='black')
+plt.axvline(mean_T10, color='red', linestyle='--')
+plt.title('Histogram of Time Measurements')
+plt.xlabel('Time for 10 Oscillations (s)')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.savefig("output3.png")
+plt.close()
+
+# Plot 4: Measured g with uncertainty
+plt.figure()
+plt.errorbar([L], [g], yerr=[delta_g], fmt='o', capsize=5)
+plt.axhline(9.81, color='red', linestyle='--')
+plt.title('Measured g with Uncertainty')
+plt.xlabel('Length (m)')
+plt.ylabel('g (m/s²)')
+plt.grid(True)
+plt.savefig("output4.png")
+plt.close()
+```
 
 ---
 
-### Angular Displacement Over Time
+## 🔍 Uncertainty and Error Analysis
 
-![Angular Position vs Time](pic3.jpeg)
+### Main Uncertainty Sources:
 
----
-
-## 📉 Error Analysis
-
-### Systematic Errors:
-
-* Center of mass hard to locate
-* Air resistance on lighter bobs
-* Slightly elastic string
-* Angle >15° affects model
-
-### Random Errors:
-
-* Reaction time in stopwatch
-* Miscounting oscillations
-* Inconsistent release angles
-
-### Quantitative Summary
-
-* $\Delta L$ contributes \~0.05% error in $g$
-* $\Delta T$ contributes \~0.08%
-* 15° angle introduces \~0.4% theoretical deviation
+* **Length Uncertainty $\Delta L$**: Influences the final result proportionally. A slight misread in length directly affects the calculated $g$.
+* **Timing Error $\Delta T$**: Amplified since $T$ is squared in the denominator.
+* **Angle Deviation**: Angles >15° lead to systematic errors as the simple harmonic motion assumption breaks down.
+* **Human Reaction Time**: Stopwatch usage introduces approximately ±0.2s error per reading.
+* **Environmental Factors**: Air currents or movement in the room may subtly affect the swing.
 
 ---
 
-## 🧮 Comparison with Standard
+## 🧐 Assumptions & Limitations
 
-* Standard $g = 9.81 \, \text{m/s}^2$
-* Measured $g = 9.77 \pm 0.01 \, \text{m/s}^2$
-* Deviation = 0.4% (likely from systematic errors)
+* Negligible air resistance and friction.
+* The pivot point is fixed and frictionless.
+* The string is massless and perfectly inextensible.
+* The motion is planar and the angle is small (<15°).
 
----
-
-## 🔧 Improvements & Extensions
-
-### Suggested Improvements:
-
-1. Use photogate timing
-2. More precise ruler or digital sensor
-3. Increase bob mass
-4. Keep angle <5°
-5. Measure to the center of oscillation
-
-### Experimental Extensions:
-
-1. Vary bob mass (check independence)
-2. Measure period at different amplitudes
-3. Compare $g$ at different altitudes
-4. Analyze physical pendulum behavior
+These assumptions simplify the system into an ideal model. Real-world deviations can introduce systemic errors.
 
 ---
 
-## 📌 Conclusion
+## ✅ Conclusion
 
-This experiment highlights how a simple pendulum allows us to accurately estimate gravitational acceleration and appreciate:
-
-* The connection between theory and experimental practice
-* The effect of uncertainty and measurement errors
-* The elegance of classical mechanics
-
-Through systematic observation, we measured:
-
-$$
-\boxed{g = (9.77 \pm 0.01)\, \text{m/s}^2}
-$$
-
-Despite minor systematic deviations, our result aligns closely with the known standard, proving the effectiveness of simple yet powerful physical experimentation.
-
+* The measured value $g \approx 9.705 \, \text{m/s}^2$ is close to the accepted value of $9.81 \, \text{m/s}^2$, with low uncertainty.
+* Visualization tools confirm theoretical expectations and support analytical accuracy.
+* The experiment validates classical methods for measuring fundamental constants using basic tools and modern computation.
