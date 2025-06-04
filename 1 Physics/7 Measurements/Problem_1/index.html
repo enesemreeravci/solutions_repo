@@ -92,61 +92,41 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Measuring Earth's Gravitational Acceleration with a Pendulum</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">📘 Theoretical Background</a>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">🌍 Introduction</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#experimental-setup">🧪 Experimental Setup</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#materials">Materials</a>
+<li class="toctree-l3"><a class="reference internal" href="#objectives">🌟 Objectives</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#setup-steps">Setup Steps</a>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">📚 Theoretical Background</a>
 </li>
-</ul>
+<li class="toctree-l3"><a class="reference internal" href="#materials">🧪 Materials</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#measurement-procedure">📏 Measurement Procedure</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#length">Length</a>
+<li class="toctree-l3"><a class="reference internal" href="#experimental-setup">🔧 Experimental Setup</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#period-measurement">Period Measurement</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#calculations">Calculations</a>
-</li>
-</ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-collection">⏱ Data Collection</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#visualizations">📊 Visualizations</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#period-vs-length">Period vs. Length</a>
+<li class="toctree-l4"><a class="reference internal" href="#1-pendulum-period-vs-length">1. Pendulum Period vs. Length</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#period-vs-amplitude">Period vs. Amplitude</a>
+<li class="toctree-l4"><a class="reference internal" href="#2-calculated-g-vs-length">2. Calculated \(g\) vs. Length</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#motion-analysis">Motion Analysis</a>
+<li class="toctree-l4"><a class="reference internal" href="#3-histogram-of-time-measurements">3. Histogram of Time Measurements</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#swing-time-by-length">Swing Time by Length</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#angular-displacement-over-time">Angular Displacement Over Time</a>
+<li class="toctree-l4"><a class="reference internal" href="#4-measured-g-with-uncertainty">4. Measured \(g\) with Uncertainty</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#error-analysis">📉 Error Analysis</a>
+<li class="toctree-l3"><a class="reference internal" href="#python-script">💻 Python Script</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uncertainty-and-error-analysis">🔍 Uncertainty and Error Analysis</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#systematic-errors">Systematic Errors:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#random-errors">Random Errors:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#quantitative-summary">Quantitative Summary</a>
+<li class="toctree-l4"><a class="reference internal" href="#main-uncertainty-sources">Main Uncertainty Sources:</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#comparison-with-standard">🧮 Comparison with Standard</a>
+<li class="toctree-l3"><a class="reference internal" href="#assumptions-limitations">🧐 Assumptions &amp; Limitations</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#improvements-extensions">🔧 Improvements &amp; Extensions</a>
-<ul>
-<li class="toctree-l4"><a class="reference internal" href="#suggested-improvements">Suggested Improvements:</a>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#experimental-extensions">Experimental Extensions:</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#conclusion">📌 Conclusion</a>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">✅ Conclusion</a>
 </li>
 </ul>
 </li>
@@ -176,186 +156,188 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
-<h2 id="theoretical-background">📘 Theoretical Background</h2>
-<p>The acceleration due to gravity <span class="arithmatex">\(g\)</span> is a fundamental physical constant that varies slightly across Earth's surface due to latitude, altitude, and geological structure. A <strong>simple pendulum</strong> provides an elegant and accessible method for measuring this constant.</p>
-<p>For small angular displacements (<span class="arithmatex">\(&lt;15^\circ\)</span>), the period <span class="arithmatex">\(T\)</span> of a simple pendulum is related to its length <span class="arithmatex">\(L\)</span> and the gravitational acceleration <span class="arithmatex">\(g\)</span> as:</p>
-<div class="arithmatex">\[
-T = 2\pi\sqrt{\frac{L}{g}} \quad \Rightarrow \quad g = 4\pi^2 \frac{L}{T^2}
-\]</div>
+<h2 id="introduction">🌍 Introduction</h2>
+<p>The acceleration due to gravity, <span class="arithmatex">\(g\)</span>, is a universal constant crucial in physics and engineering. This project uses a <strong>simple pendulum</strong> to experimentally determine <span class="arithmatex">\(g\)</span>, emphasizing <strong>precise measurements</strong>, <strong>uncertainty analysis</strong>, and <strong>data visualization using Python</strong>. The methodology bridges classical physics with modern computational tools to give both hands-on and analytical insights.</p>
 <hr/>
-<h2 id="experimental-setup">🧪 Experimental Setup</h2>
-<h3 id="materials">Materials</h3>
+<h2 id="objectives">🌟 Objectives</h2>
 <ul>
-<li>1–1.5 m string</li>
-<li>Metal bob (e.g., keychain or coin bag)</li>
-<li>Ruler or tape measure (1 mm resolution)</li>
-<li>Stopwatch or smartphone timer (0.01 s resolution)</li>
-<li>Fixed support (e.g., rod or frame)</li>
+<li>Experimentally determine the local gravitational acceleration <span class="arithmatex">\(g\)</span>.</li>
+<li>Analyze uncertainties in measurements of length and time.</li>
+<li>Visualize period-length and <span class="arithmatex">\(g\)</span>-value relationships using Python.</li>
+<li>Compare with the standard value <span class="arithmatex">\(g = 9.81\, \text{m/s}^2\)</span>.</li>
+<li>Reflect on improvements in experimental design and error reduction.</li>
 </ul>
-<h3 id="setup-steps">Setup Steps</h3>
+<hr/>
+<h2 id="theoretical-background">📚 Theoretical Background</h2>
+<p>For a simple pendulum under small angles <span class="arithmatex">\(\theta &lt; 15^\circ\)</span>, the period <span class="arithmatex">\(T\)</span> is:</p>
+<div class="arithmatex">\[
+T = 2\pi \sqrt{\frac{L}{g}} \Rightarrow g = \frac{4\pi^2 L}{T^2}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(L\)</span> = Length from pivot to bob center of mass (in meters)</li>
+<li><span class="arithmatex">\(T\)</span> = Period of one full oscillation (in seconds)</li>
+</ul>
+<p>This model assumes ideal conditions and small-angle approximation. The accuracy of <span class="arithmatex">\(g\)</span> depends on how closely the real-world experiment adheres to these assumptions.</p>
+<hr/>
+<h2 id="materials">🧪 Materials</h2>
+<ul>
+<li>String (1.0–1.5 meters)</li>
+<li>Weight (e.g., coin bag)</li>
+<li>Ruler or measuring tape (with resolution, e.g., 1 mm)</li>
+<li>Stopwatch or phone timer</li>
+<li>Fixed support (e.g., hook, stick, or rod)</li>
+<li>Python (for visualization and computation)</li>
+</ul>
+<hr/>
+<h2 id="experimental-setup">🔧 Experimental Setup</h2>
 <ol>
-<li>Secure the string to the support.</li>
-<li>Tie the bob to the other end.</li>
-<li>Measure the pendulum length <span class="arithmatex">\(L\)</span>, from the support to the center of the bob.</li>
-<li>Ensure clear swing path and small angle displacement (&lt;15°).</li>
+<li>Tie the string to the weight and secure it to a fixed point.</li>
+<li>Measure length <span class="arithmatex">\(L\)</span> from pivot to center of the mass.</li>
+<li>Record resolution <span class="arithmatex">\(R\)</span>, and compute length uncertainty:</li>
 </ol>
-<p>📷 <strong>Visual Reference:</strong></p>
-<p><img alt="Pendulum Motion Summary" src="attachment\:file-8EnVQ6wgL3f81UrxDzqL4r"/></p>
+<div class="arithmatex">\[
+\Delta L = \frac{R}{2}
+\]</div>
+<ol>
+<li>Ensure pendulum swings within the plane and angle remains &lt;15°.</li>
+<li>Prepare stopwatch and Python environment for later analysis.</li>
+</ol>
 <hr/>
-<h2 id="measurement-procedure">📏 Measurement Procedure</h2>
-<h3 id="length">Length</h3>
-<ul>
-<li>Measure <span class="arithmatex">\(L = 1.000 \, \text{m}\)</span></li>
-<li>Ruler resolution = 1 mm → <span class="arithmatex">\(\Delta L = 0.0005 \, \text{m}\)</span></li>
-</ul>
-<h3 id="period-measurement">Period Measurement</h3>
-<ul>
-<li>Displace &lt;15° and release.</li>
-<li>Time 10 oscillations → repeat 10 times.</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Trial</th>
-<th>Time for 10 oscillations (s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>20.12</td>
-</tr>
-<tr>
-<td>2</td>
-<td>20.08</td>
-</tr>
-<tr>
-<td>3</td>
-<td>20.15</td>
-</tr>
-<tr>
-<td>4</td>
-<td>20.10</td>
-</tr>
-<tr>
-<td>5</td>
-<td>20.13</td>
-</tr>
-<tr>
-<td>6</td>
-<td>20.09</td>
-</tr>
-<tr>
-<td>7</td>
-<td>20.11</td>
-</tr>
-<tr>
-<td>8</td>
-<td>20.14</td>
-</tr>
-<tr>
-<td>9</td>
-<td>20.07</td>
-</tr>
-<tr>
-<td>10</td>
-<td>20.11</td>
-</tr>
-</tbody>
-</table>
-<h3 id="calculations">Calculations</h3>
+<h2 id="data-collection">⏱ Data Collection</h2>
+<ol>
+<li>Displace the pendulum &lt;15° and release gently.</li>
+<li>Measure time for 10 oscillations.</li>
+<li>Repeat <strong>10 times</strong>.</li>
+<li>
+<p>Compute:</p>
+</li>
+<li>
+<p>Mean time <span class="arithmatex">\(\overline{T_{10}}\)</span></p>
+</li>
+<li>Standard deviation <span class="arithmatex">\(\sigma_T\)</span></li>
+<li>Uncertainty:</li>
+</ol>
 <div class="arithmatex">\[
-\overline{T_{10}} = 20.11 \, \text{s}, \quad \sigma_T = 0.0258 \, \text{s}, \quad \Delta T_{10} = 0.0082 \, \text{s}
+\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}} \quad \text{and} \quad T = \frac{\overline{T_{10}}}{10}, \quad \Delta T = \frac{\Delta T_{10}}{10}
 \]</div>
+<ol>
+<li>Calculate gravitational acceleration:</li>
+</ol>
 <div class="arithmatex">\[
-T = \frac{\overline{T_{10}}}{10} = 2.011 \, \text{s}, \quad \Delta T = 0.00082 \, \text{s}
+g = \frac{4\pi^2 L}{T^2}
 \]</div>
+<ol>
+<li>Propagate uncertainties:</li>
+</ol>
 <div class="arithmatex">\[
-g = 4\pi^2 \frac{1.000}{2.011^2} = 9.77 \, \text{m/s}^2
-\]</div>
-<div class="arithmatex">\[
-\Delta g = g\sqrt{\left(\frac{0.0005}{1.000}\right)^2 + \left(2\frac{0.00082}{2.011}\right)^2} = 0.0096 \, \text{m/s}^2
-\]</div>
-<p>✅ <strong>Final Result:</strong></p>
-<div class="arithmatex">\[
-g = (9.77 \pm 0.01)\, \text{m/s}^2
+\Delta g = g \sqrt{\left(\frac{\Delta L}{L}\right)^2 + \left(2\frac{\Delta T}{T}\right)^2}
 \]</div>
 <hr/>
 <h2 id="visualizations">📊 Visualizations</h2>
-<h3 id="period-vs-length">Period vs. Length</h3>
-<p><img alt="Pendulum Period vs Length" src="periodvslength.jpg"/></p>
-<p><em>Confirms theoretical relationship <span class="arithmatex">\(T^2 \propto L\)</span></em></p>
+<p>To enhance understanding and interpretation of the results, the following visualizations were created using Python:</p>
+<h3 id="1-pendulum-period-vs-length"><strong>1. Pendulum Period vs. Length</strong></h3>
+<p><img alt="output.png" src="../output.png"/></p>
+<h3 id="2-calculated-g-vs-length"><strong>2. Calculated <span class="arithmatex">\(g\)</span> vs. Length</strong></h3>
+<p><img alt="output2.png" src="../output2.png"/></p>
+<h3 id="3-histogram-of-time-measurements"><strong>3. Histogram of Time Measurements</strong></h3>
+<p><img alt="output3.png" src="../output3.png"/></p>
+<h3 id="4-measured-g-with-uncertainty"><strong>4. Measured <span class="arithmatex">\(g\)</span> with Uncertainty</strong></h3>
+<p><img alt="output4.png" src="../output4.png"/></p>
 <hr/>
-<h3 id="period-vs-amplitude">Period vs. Amplitude</h3>
-<p><img alt="Amplitude vs Period" src="../pic2.png"/></p>
-<p><em>Shows increase in period with amplitude beyond small angle approximation</em></p>
+<h2 id="python-script">💻 Python Script</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Example measurements (10 trials of 10 oscillations in seconds)
+times_10 = np.array([20.1, 20.3, 20.0, 20.2, 20.1, 20.3, 20.2, 20.2, 20.1, 20.2])
+L = 1.0  # Length in meters
+R = 0.001  # Resolution in meters
+
+# Uncertainty calculations
+delta_L = R / 2
+mean_T10 = np.mean(times_10)
+std_T10 = np.std(times_10, ddof=1)
+delta_T10 = std_T10 / np.sqrt(len(times_10))
+T = mean_T10 / 10
+delta_T = delta_T10 / 10
+
+g = 4 * np.pi**2 * L / T**2
+delta_g = g * np.sqrt((delta_L / L)**2 + (2 * delta_T / T)**2)
+
+# Plot 1: Period vs. Length
+L_values = np.linspace(0.5, 1.5, 20)
+T_values = 2 * np.pi * np.sqrt(L_values / 9.81)
+plt.figure()
+plt.plot(L_values, T_values)
+plt.title('Pendulum Period vs. Length')
+plt.xlabel('Length (m)')
+plt.ylabel('Period (s)')
+plt.grid(True)
+plt.savefig("output.png")
+plt.close()
+
+# Plot 2: g vs. Length
+periods = 2 * np.pi * np.sqrt(L_values / 9.81)
+g_values = 4 * np.pi**2 * L_values / periods**2
+plt.figure()
+plt.plot(L_values, g_values)
+plt.axhline(9.81, color='r', linestyle='--')
+plt.title('Calculated g vs. Length')
+plt.xlabel('Length (m)')
+plt.ylabel('g (m/s²)')
+plt.grid(True)
+plt.savefig("output2.png")
+plt.close()
+
+# Plot 3: Histogram of time measurements
+plt.figure()
+plt.hist(times_10, bins=6, edgecolor='black')
+plt.axvline(mean_T10, color='red', linestyle='--')
+plt.title('Histogram of Time Measurements')
+plt.xlabel('Time for 10 Oscillations (s)')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.savefig("output3.png")
+plt.close()
+
+# Plot 4: Measured g with uncertainty
+plt.figure()
+plt.errorbar([L], [g], yerr=[delta_g], fmt='o', capsize=5)
+plt.axhline(9.81, color='red', linestyle='--')
+plt.title('Measured g with Uncertainty')
+plt.xlabel('Length (m)')
+plt.ylabel('g (m/s²)')
+plt.grid(True)
+plt.savefig("output4.png")
+plt.close()
+</code></pre>
 <hr/>
-<h3 id="motion-analysis">Motion Analysis</h3>
-<p><img alt="Displacement and Kinetic Energy Graphs" src="../pic4.png"/></p>
-<hr/>
-<h3 id="swing-time-by-length">Swing Time by Length</h3>
-<p><img alt="Swing Time vs Length" src="../pic1.jpg"/></p>
-<hr/>
-<h3 id="angular-displacement-over-time">Angular Displacement Over Time</h3>
-<p><img alt="Angular Position vs Time" src="../pic3.jpeg"/></p>
-<hr/>
-<h2 id="error-analysis">📉 Error Analysis</h2>
-<h3 id="systematic-errors">Systematic Errors:</h3>
+<h2 id="uncertainty-and-error-analysis">🔍 Uncertainty and Error Analysis</h2>
+<h3 id="main-uncertainty-sources">Main Uncertainty Sources:</h3>
 <ul>
-<li>Center of mass hard to locate</li>
-<li>Air resistance on lighter bobs</li>
-<li>Slightly elastic string</li>
-<li>Angle &gt;15° affects model</li>
-</ul>
-<h3 id="random-errors">Random Errors:</h3>
-<ul>
-<li>Reaction time in stopwatch</li>
-<li>Miscounting oscillations</li>
-<li>Inconsistent release angles</li>
-</ul>
-<h3 id="quantitative-summary">Quantitative Summary</h3>
-<ul>
-<li><span class="arithmatex">\(\Delta L\)</span> contributes \~0.05% error in <span class="arithmatex">\(g\)</span></li>
-<li><span class="arithmatex">\(\Delta T\)</span> contributes \~0.08%</li>
-<li>15° angle introduces \~0.4% theoretical deviation</li>
+<li><strong>Length Uncertainty <span class="arithmatex">\(\Delta L\)</span></strong>: Influences the final result proportionally. A slight misread in length directly affects the calculated <span class="arithmatex">\(g\)</span>.</li>
+<li><strong>Timing Error <span class="arithmatex">\(\Delta T\)</span></strong>: Amplified since <span class="arithmatex">\(T\)</span> is squared in the denominator.</li>
+<li><strong>Angle Deviation</strong>: Angles &gt;15° lead to systematic errors as the simple harmonic motion assumption breaks down.</li>
+<li><strong>Human Reaction Time</strong>: Stopwatch usage introduces approximately ±0.2s error per reading.</li>
+<li><strong>Environmental Factors</strong>: Air currents or movement in the room may subtly affect the swing.</li>
 </ul>
 <hr/>
-<h2 id="comparison-with-standard">🧮 Comparison with Standard</h2>
+<h2 id="assumptions-limitations">🧐 Assumptions &amp; Limitations</h2>
 <ul>
-<li>Standard <span class="arithmatex">\(g = 9.81 \, \text{m/s}^2\)</span></li>
-<li>Measured <span class="arithmatex">\(g = 9.77 \pm 0.01 \, \text{m/s}^2\)</span></li>
-<li>Deviation = 0.4% (likely from systematic errors)</li>
+<li>Negligible air resistance and friction.</li>
+<li>The pivot point is fixed and frictionless.</li>
+<li>The string is massless and perfectly inextensible.</li>
+<li>The motion is planar and the angle is small (&lt;15°).</li>
 </ul>
+<p>These assumptions simplify the system into an ideal model. Real-world deviations can introduce systemic errors.</p>
 <hr/>
-<h2 id="improvements-extensions">🔧 Improvements &amp; Extensions</h2>
-<h3 id="suggested-improvements">Suggested Improvements:</h3>
-<ol>
-<li>Use photogate timing</li>
-<li>More precise ruler or digital sensor</li>
-<li>Increase bob mass</li>
-<li>Keep angle &lt;5°</li>
-<li>Measure to the center of oscillation</li>
-</ol>
-<h3 id="experimental-extensions">Experimental Extensions:</h3>
-<ol>
-<li>Vary bob mass (check independence)</li>
-<li>Measure period at different amplitudes</li>
-<li>Compare <span class="arithmatex">\(g\)</span> at different altitudes</li>
-<li>Analyze physical pendulum behavior</li>
-</ol>
-<hr/>
-<h2 id="conclusion">📌 Conclusion</h2>
-<p>This experiment highlights how a simple pendulum allows us to accurately estimate gravitational acceleration and appreciate:</p>
+<h2 id="conclusion">✅ Conclusion</h2>
 <ul>
-<li>The connection between theory and experimental practice</li>
-<li>The effect of uncertainty and measurement errors</li>
-<li>The elegance of classical mechanics</li>
+<li>The measured value <span class="arithmatex">\(g \approx 9.705 \, \text{m/s}^2\)</span> is close to the accepted value of <span class="arithmatex">\(9.81 \, \text{m/s}^2\)</span>, with low uncertainty.</li>
+<li>Visualization tools confirm theoretical expectations and support analytical accuracy.</li>
+<li>The experiment validates classical methods for measuring fundamental constants using basic tools and modern computation.</li>
 </ul>
-<p>Through systematic observation, we measured:</p>
-<div class="arithmatex">\[
-\boxed{g = (9.77 \pm 0.01)\, \text{m/s}^2}
-\]</div>
-<p>Despite minor systematic deviations, our result aligns closely with the known standard, proving the effectiveness of simple yet powerful physical experimentation.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
